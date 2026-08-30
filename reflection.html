@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflection - Becoming a Professional IT Practitioner</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0ede8;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 12pt;
+      color: #111;
+    }
+
+    .toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 52px;
+      background: #2b2b2b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-link {
+      color: #ccc;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+
+    .dl-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #c5f82a;
+      color: #111;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dl-btn:hover {
+      background: #b1e025;
+    }
+
+    .page-shadow {
+      padding-top: 52px;
+      min-height: 100vh;
+      background: #f0ede8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      background: #fff;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 30px auto;
+      padding: 25.4mm;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+      line-height: 1.5;
+    }
+
+    .paper-title {
+      text-align: center;
+      font-size: 14pt;
+      font-weight: bold;
+      margin-bottom: 18pt;
+    }
+
+    p {
+      margin-bottom: 10pt;
+      text-align: justify;
+      text-indent: 36pt;
+    }
+
+    p.no-indent {
+      text-indent: 0;
+    }
+
+    @media print {
+      .toolbar {
+        display: none !important;
+      }
+
+      .page-shadow {
+        padding: 0;
+        background: #fff;
+      }
+
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        padding: 25.4mm;
+      }
+
+      body {
+        background: #fff;
+      }
+    }
+
+    @media (max-width:900px) {
+      .page {
+        width: 100%;
+        margin: 0;
+        padding: 14mm 10mm;
+      }
+    }
+  </style>
+  <!-- html2pdf for direct PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+  <div class="toolbar">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
+      </svg>
+      Back to Portfolio
+    </a>
+    <button class="dl-btn" id="downloadPdfBtn" onclick="downloadAsPDF()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+      Download PDF
+    </button>
+  </div>
+  <div class="page-shadow">
+    <div class="page">
+
+      <p class="paper-title no-indent">Becoming a Professional IT Practitioner</p>
+
+      <p>To me, being professional in IT is pretty simple at its core: it&rsquo;s about doing the right thing when
+        you&rsquo;re working with technology, even when no one is watching. In our BSIT classes, we focus a lot on
+        coding, database queries, and networking, but this lecture made me realize that technical knowledge is only half
+        the battle. We aren&rsquo;t just playing with tools; we handle real people&rsquo;s personal data, business
+        records, and critical networks. If an IT person is careless or unethical, it doesn&rsquo;t just mean a broken
+        program; it can lead to a massive data breach, privacy violations, or system failures that ruin an
+        organization&rsquo;s reputation and destroy public trust. That&rsquo;s why technical skills alone aren&rsquo;t
+        enough. You can be the fastest developer in the room, but if you can&rsquo;t be trusted with confidential data
+        or if you&rsquo;re unreliable and dishonest, you aren&rsquo;t a true IT professional.</p>
+
+      <p>Looking at the characteristics of an IT practitioner, I think my strongest quality is responsibility, which
+        maps directly to the first of the 5 R&rsquo;s. When I work on group projects, I take ownership of my work, make
+        sure I meet my deadlines, and never try to hide my mistakes. If a script I wrote breaks a system, I believe in
+        admitting it and fixing it instead of blaming others or pretending it wasn&rsquo;t me. On the flip side, the
+        area where I have the most room to grow is readiness to learn. It is easy to get comfortable just doing the
+        homework assignments and stopping there. But because technology changes so fast, we have to be lifelong
+        learners. I want to build a habit of reading technical documentation on my own instead of waiting for an
+        instructor to explain everything. In the future, I want to learn more about cloud database administration and
+        modern cybersecurity frameworks. Keeping up with these fields will require me to attend seminars, earn
+        certifications, and work on personal projects even after I graduate.</p>
+
+      <p>As IT professionals, we often get administrative access to sensitive resources like passwords, student records,
+        and company files. Protecting this confidentiality is a major ethical duty because privacy is a matter of
+        respect and trust. Just because you have the technical ability to view someone&rsquo;s files doesn&rsquo;t mean
+        you have the right to do so. For instance, if I noticed a coworker had written their password on a sticky note
+        next to their computer screen, I wouldn&rsquo;t ignore it or use it to poke around. A professional response is
+        to privately and politely point it out to them. I would say, &ldquo;Hey, I noticed your password is visible
+        right here. It&rsquo;s a pretty big security risk, so you might want to memorize it or use a secure password
+        manager.&rdquo; This protects both their personal accounts and the security of the whole organization without
+        causing unnecessary drama or embarrassment.</p>
+
+      <p>Our day-to-day conduct, both offline and online, defines our professional reputation. In school or during a
+        future internship, showing professionalism means arriving on time, working well with classmates, and documenting
+        code properly so the next person can maintain it. It also shows in how we talk to users. Instead of being
+        patronizing and saying &ldquo;your system is broken because you don&rsquo;t know how to use it,&rdquo; a
+        professional communicator is patient and says, &ldquo;The system appears to have encountered an error. Let me
+        check the configuration and help you resolve it.&rdquo; Digital professionalism is just as important. My social
+        media posts, comments, and online behavior represent me as a future practitioner. What I post online stays
+        there, and employers do look at social media. I need to make sure my digital presence is respectful and
+        doesn&rsquo;t showcase unprofessional behaviors or unauthorized school data.</p>
+
+      <p>As a future IT professional, I commit myself to taking full ownership of my mistakes and correcting them
+        honestly, safeguarding the privacy of any user data or systems I am entrusted with, and maintaining an active
+        readiness to learn by continuously upgrading my skills outside the classroom. By practicing these principles in
+        my daily studies and group projects, I hope to build a reputation as a reliable and ethical IT practitioner
+        before I even graduate.</p>
+
+    </div>
+  </div>
+
+  <script>
+    function downloadAsPDF() {
+      const btn = document.getElementById('downloadPdfBtn');
+      btn.textContent = 'Generating...';
+      btn.disabled = true;
+
+      const element = document.querySelector('.page');
+      
+      // Temporarily remove shadow for a clean PDF edge
+      const originalShadow = element.style.boxShadow;
+      element.style.boxShadow = 'none';
+
+      // Margin is 0 because the .page element already has 25.4mm padding
+      const opt = {
+        margin:       0,
+        filename:     'Reflection_Becoming_a_Professional_IT_Practitioner.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        element.style.boxShadow = originalShadow;
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF`;
+        btn.disabled = false;
+      });
+    }
+  </script>
+</body>
+
+</html>
