@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const hoverElements = document.querySelectorAll('a, button, .project-card, .hamburger, .close-btn, input, textarea');
+    const hoverElements = document.querySelectorAll('a, button, .project-card, .certificate-card, .cert-btn, .cert-modal-close, .cert-img-wrapper, .hamburger, .close-btn, input, textarea');
     hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             if (cursorOutline) {
@@ -195,4 +195,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    // 6. Certificate Lightbox Modal Logic
+    const certModal = document.getElementById('certModal');
+    const certModalClose = document.getElementById('certModalClose');
+    const certModalBackdrop = document.querySelector('.cert-modal-backdrop');
+    const certModalImg = document.getElementById('certModalImg');
+    const certModalTitle = document.getElementById('certModalTitle');
+    const certModalIssuer = document.getElementById('certModalIssuer');
+
+    function openCertModal(card) {
+        const imgSrc = card.getAttribute('data-cert');
+        const title = card.getAttribute('data-title');
+        const issuer = card.getAttribute('data-issuer');
+
+        if (certModalImg) certModalImg.src = imgSrc;
+        if (certModalTitle) certModalTitle.textContent = title;
+        if (certModalIssuer) certModalIssuer.textContent = issuer;
+
+        if (certModal) {
+            certModal.classList.add('active');
+            certModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeCertModal() {
+        if (certModal) {
+            certModal.classList.remove('active');
+            certModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    document.querySelectorAll('.certificate-card').forEach(card => {
+        const previewTrigger = card.querySelector('.cert-img-wrapper');
+        const viewBtn = card.querySelector('.view-cert-btn');
+
+        if (previewTrigger) {
+            previewTrigger.addEventListener('click', () => openCertModal(card));
+        }
+        if (viewBtn) {
+            viewBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openCertModal(card);
+            });
+        }
+    });
+
+    if (certModalClose) certModalClose.addEventListener('click', closeCertModal);
+    if (certModalBackdrop) certModalBackdrop.addEventListener('click', closeCertModal);
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && certModal && certModal.classList.contains('active')) {
+            closeCertModal();
+        }
+    });
 });

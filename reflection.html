@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reflection - Becoming a Professional IT Practitioner</title>
+  <title id="docTitle">Course Reflection: What I Learned in AI Literacy and Responsible Use</title>
   <style>
     * {
       margin: 0;
@@ -19,33 +19,96 @@
       color: #111;
     }
 
+    /* Fixed Top Toolbar */
     .toolbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 52px;
-      background: #2b2b2b;
+      min-height: 56px;
+      background: #1e1e1e;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 1.5rem;
+      padding: 8px 1.5rem;
       z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .back-link {
-      color: #ccc;
+      color: #e0e0e0;
       text-decoration: none;
       font-family: Arial, sans-serif;
       font-size: 13px;
+      font-weight: 500;
       display: flex;
       align-items: center;
       gap: 8px;
+      transition: color 0.2s ease;
+      white-space: nowrap;
     }
 
     .back-link:hover {
+      color: #c5f82a;
+    }
+
+    /* Tabs Segmented Control */
+    .doc-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: #bbb;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
       color: #fff;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .tab-btn.active {
+      background: #c5f82a;
+      color: #111;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(197, 248, 42, 0.35);
+    }
+
+    .tab-btn svg {
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+
+    .tab-btn.active svg {
+      opacity: 1;
+      stroke: #111;
     }
 
     .dl-btn {
@@ -57,20 +120,31 @@
       font-family: Arial, sans-serif;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: 4px;
+      padding: 8px 16px;
+      border-radius: 6px;
       border: none;
       cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
     }
 
     .dl-btn:hover {
       background: #b1e025;
+      transform: translateY(-1px);
     }
 
+    .dl-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Page Area */
     .page-shadow {
-      padding-top: 52px;
+      padding-top: 76px;
+      padding-bottom: 50px;
       min-height: 100vh;
       background: #f0ede8;
       display: flex;
@@ -78,20 +152,55 @@
       align-items: center;
     }
 
+    .reflection-doc {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .reflection-doc.active {
+      display: flex;
+      animation: fadeInDoc 0.25s ease;
+    }
+
+    @keyframes fadeInDoc {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* A4 Paper Dimensions */
     .page {
       background: #fff;
       width: 210mm;
       min-height: 297mm;
-      margin: 30px auto;
+      margin: 20px auto;
       padding: 25.4mm;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
       line-height: 1.5;
+      position: relative;
+      page-break-after: always;
+      break-after: page;
     }
 
     .paper-title {
       text-align: center;
       font-size: 14pt;
       font-weight: bold;
+      margin-bottom: 6pt;
+    }
+
+    .paper-subtitle {
+      text-align: center;
+      font-size: 11pt;
+      font-style: italic;
+      color: #333;
       margin-bottom: 18pt;
     }
 
@@ -115,11 +224,20 @@
         background: #fff;
       }
 
+      .reflection-doc {
+        display: none !important;
+      }
+
+      .reflection-doc.active {
+        display: block !important;
+      }
+
       .page {
         box-shadow: none;
         margin: 0;
         width: 100%;
         padding: 25.4mm;
+        min-height: auto;
       }
 
       body {
@@ -127,11 +245,28 @@
       }
     }
 
-    @media (max-width:900px) {
+    @media (max-width: 960px) {
+      .toolbar {
+        justify-content: center;
+        padding: 10px 1rem;
+      }
+
+      .doc-tabs {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        overflow-x: auto;
+      }
+
+      .page-shadow {
+        padding-top: 130px;
+      }
+
       .page {
         width: 100%;
-        margin: 0;
-        padding: 14mm 10mm;
+        margin: 10px 0;
+        padding: 16mm 10mm;
+        min-height: auto;
       }
     }
   </style>
@@ -140,102 +275,222 @@
 </head>
 
 <body>
-  <div class="toolbar">
-    <a href="index.html" class="back-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="19" y1="12" x2="5" y2="12" />
-        <polyline points="12 19 5 12 12 5" />
-      </svg>
-      Back to Portfolio
-    </a>
-    <button class="dl-btn" id="downloadPdfBtn" onclick="downloadAsPDF()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-      Download PDF
-    </button>
-  </div>
-  <div class="page-shadow">
-    <div class="page">
-
-      <p class="paper-title no-indent">Becoming a Professional IT Practitioner</p>
-
-      <p>To me, being professional in IT is pretty simple at its core: it&rsquo;s about doing the right thing when
-        you&rsquo;re working with technology, even when no one is watching. In our BSIT classes, we focus a lot on
-        coding, database queries, and networking, but this lecture made me realize that technical knowledge is only half
-        the battle. We aren&rsquo;t just playing with tools; we handle real people&rsquo;s personal data, business
-        records, and critical networks. If an IT person is careless or unethical, it doesn&rsquo;t just mean a broken
-        program; it can lead to a massive data breach, privacy violations, or system failures that ruin an
-        organization&rsquo;s reputation and destroy public trust. That&rsquo;s why technical skills alone aren&rsquo;t
-        enough. You can be the fastest developer in the room, but if you can&rsquo;t be trusted with confidential data
-        or if you&rsquo;re unreliable and dishonest, you aren&rsquo;t a true IT professional.</p>
-
-      <p>Looking at the characteristics of an IT practitioner, I think my strongest quality is responsibility, which
-        maps directly to the first of the 5 R&rsquo;s. When I work on group projects, I take ownership of my work, make
-        sure I meet my deadlines, and never try to hide my mistakes. If a script I wrote breaks a system, I believe in
-        admitting it and fixing it instead of blaming others or pretending it wasn&rsquo;t me. On the flip side, the
-        area where I have the most room to grow is readiness to learn. It is easy to get comfortable just doing the
-        homework assignments and stopping there. But because technology changes so fast, we have to be lifelong
-        learners. I want to build a habit of reading technical documentation on my own instead of waiting for an
-        instructor to explain everything. In the future, I want to learn more about cloud database administration and
-        modern cybersecurity frameworks. Keeping up with these fields will require me to attend seminars, earn
-        certifications, and work on personal projects even after I graduate.</p>
-
-      <p>As IT professionals, we often get administrative access to sensitive resources like passwords, student records,
-        and company files. Protecting this confidentiality is a major ethical duty because privacy is a matter of
-        respect and trust. Just because you have the technical ability to view someone&rsquo;s files doesn&rsquo;t mean
-        you have the right to do so. For instance, if I noticed a coworker had written their password on a sticky note
-        next to their computer screen, I wouldn&rsquo;t ignore it or use it to poke around. A professional response is
-        to privately and politely point it out to them. I would say, &ldquo;Hey, I noticed your password is visible
-        right here. It&rsquo;s a pretty big security risk, so you might want to memorize it or use a secure password
-        manager.&rdquo; This protects both their personal accounts and the security of the whole organization without
-        causing unnecessary drama or embarrassment.</p>
-
-      <p>Our day-to-day conduct, both offline and online, defines our professional reputation. In school or during a
-        future internship, showing professionalism means arriving on time, working well with classmates, and documenting
-        code properly so the next person can maintain it. It also shows in how we talk to users. Instead of being
-        patronizing and saying &ldquo;your system is broken because you don&rsquo;t know how to use it,&rdquo; a
-        professional communicator is patient and says, &ldquo;The system appears to have encountered an error. Let me
-        check the configuration and help you resolve it.&rdquo; Digital professionalism is just as important. My social
-        media posts, comments, and online behavior represent me as a future practitioner. What I post online stays
-        there, and employers do look at social media. I need to make sure my digital presence is respectful and
-        doesn&rsquo;t showcase unprofessional behaviors or unauthorized school data.</p>
-
-      <p>As a future IT professional, I commit myself to taking full ownership of my mistakes and correcting them
-        honestly, safeguarding the privacy of any user data or systems I am entrusted with, and maintaining an active
-        readiness to learn by continuously upgrading my skills outside the classroom. By practicing these principles in
-        my daily studies and group projects, I hope to build a reputation as a reliable and ethical IT practitioner
-        before I even graduate.</p>
-
+  <header class="toolbar">
+    <div class="toolbar-left">
+      <a href="index.html" class="back-link" title="Return to Adrian's Portfolio">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        Back to Portfolio
+      </a>
     </div>
-  </div>
+
+    <!-- Document Tabs Switcher -->
+    <nav class="doc-tabs" aria-label="Reflection Document Selector">
+      <button class="tab-btn active" id="tab-ai-learned" onclick="switchDoc('doc-ai-learned')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        What I Learned in AI Literacy
+      </button>
+
+      <button class="tab-btn" id="tab-professional" onclick="switchDoc('doc-professional')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        Becoming a Professional IT Practitioner
+      </button>
+    </nav>
+
+    <div class="toolbar-right">
+      <button class="dl-btn" id="downloadPdfBtn" onclick="downloadAsPDF()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Download PDF
+      </button>
+    </div>
+  </header>
+
+  <main class="page-shadow">
+    <!-- REFLECTION 1: Course Reflection: What I Learned in AI Literacy and Responsible Use -->
+    <article class="reflection-doc active" id="doc-ai-learned" data-title="Course Reflection: What I Learned in AI Literacy and Responsible Use" data-filename="Course_Reflection_What_I_Learned_in_AI_Literacy_and_Responsible_Use.pdf">
+      <!-- Page 1 of 2 -->
+      <div class="page" id="doc-learned-page1">
+        <h1 class="paper-title no-indent">Course Reflection: What I Learned in AI Literacy and Responsible Use</h1>
+        <p class="paper-subtitle no-indent">Map&uacute;a asCEnd Learning Micro-Credential | Student Reflection Paper</p>
+
+        <p>Before taking this course, it was easy to think of tools like ChatGPT as search engines with a personality, or some kind of artificial brain that actually understands what you ask it. The biggest technical thing I learned right away is that generative AI doesn&rsquo;t &ldquo;know&rdquo; anything; it&rsquo;s a probability engine. It scans patterns in massive amounts of training data and predicts whatever token or word makes the most statistical sense next. Seeing it explained plainly stripped away the magic. When an AI generates a snippet of Python or SQL, it isn&rsquo;t reasoning through database design or logic&mdash;it&rsquo;s just assembling text based on what other developers have written online. That simple distinction completely changed how I look at the screen. You stop viewing the response as an authoritative answer and start treating it like raw, unverified output that needs inspection.</p>
+
+        <p>The course also broke down what actually makes prompting work. Most of us start out by typing one sentence into a prompt box, like &ldquo;write an authentication script,&rdquo; and then get frustrated when the code doesn&rsquo;t work or misses half the requirements. What I picked up is that prompting is more like writing an informal specification. You have to give the model context: what framework you&rsquo;re on, what libraries you&rsquo;re using, what inputs it should expect, and what constraints it has to follow. More importantly, it taught the value of iteration. If the output isn&rsquo;t right, you don&rsquo;t just scrap it and re-roll the prompt hoping for better luck; you feed the errors back in, point out where the logic broke, and guide it step by step. Treating it like an interactive tool rather than an oracle made my workflow a lot cleaner.</p>
+
+        <p>Another major lesson was learning not to trust confident answers. Generative models will sound 100% sure of themselves even when they are completely making things up&mdash;whether that&rsquo;s inventing a non-existent function in a PHP library, citing a fake article, or generating SQL that has subtle syntax errors. In class, it&rsquo;s tempting to copy code the second it compiles without checking whether it handles edge cases or introduces security vulnerabilities. The course hammered home that linguistic fluency isn&rsquo;t the same as correctness. Now, whenever an AI suggests a solution, my first instinct isn&rsquo;t to paste it into my project; it's to open the official documentation or test the function with edge cases to see if it actually behaves the way it claims. The time you save generating code means nothing if you spend three hours tracking down a bug the AI silently introduced.</p>
+
+        <p>The privacy and data governance module was probably the most eye-opening part for anyone working in tech. A lot of students don't think twice about pasting entire files into a chat window&mdash;including real database schemas, API keys, student credentials, or private configuration files. The course made it clear that public consumer models often store prompt histories and can use that data for future training. Once confidential data leaves your computer, you have no control over whose eyes or server logs it ends up in. Learning this made me rethink my habits immediately. If I&rsquo;m using AI to help troubleshoot a tricky query or review an algorithm, I now make sure to strip out all real table names, replace passwords with dummy strings, and sanitize the data before hitting enter.</p>
+
+        <p>The final and most important takeaway from the course is that accountability always stays with the human behind the keyboard. You can&rsquo;t turn in an assignment or deploy code to a server and</p>
+      </div>
+
+      <!-- Page 2 of 2 -->
+      <div class="page" id="doc-learned-page2">
+        <p>blame the AI when something fails or causes a security breach. Nobody cares that a prompt generated the error; they care that you didn&rsquo;t catch it. The course helped me realize that using AI isn&rsquo;t an all-or-nothing choice. It isn't about banning it completely or letting it do all your thinking for you. It's about knowing when to use it as a brainstorming tool, when to write things from scratch, and always being ready to explain and defend every line of work you submit under your own name.</p>
+      </div>
+    </article>
+
+    <!-- REFLECTION 2: Becoming a Professional IT Practitioner -->
+    <article class="reflection-doc" id="doc-professional" data-title="Becoming a Professional IT Practitioner - Reflection" data-filename="Reflection_Becoming_a_Professional_IT_Practitioner.pdf">
+      <div class="page" id="doc-prof-page1">
+        <h1 class="paper-title no-indent">Becoming a Professional IT Practitioner</h1>
+
+        <p>To me, being professional in IT is pretty simple at its core: it&rsquo;s about doing the right thing when
+          you&rsquo;re working with technology, even when no one is watching. In our BSIT classes, we focus a lot on
+          coding, database queries, and networking, but this lecture made me realize that technical knowledge is only half
+          the battle. We aren&rsquo;t just playing with tools; we handle real people&rsquo;s personal data, business
+          records, and critical networks. If an IT person is careless or unethical, it doesn&rsquo;t just mean a broken
+          program; it can lead to a massive data breach, privacy violations, or system failures that ruin an
+          organization&rsquo;s reputation and destroy public trust. That&rsquo;s why technical skills alone aren&rsquo;t
+          enough. You can be the fastest developer in the room, but if you can&rsquo;t be trusted with confidential data
+          or if you&rsquo;re unreliable and dishonest, you aren&rsquo;t a true IT professional.</p>
+
+        <p>Looking at the characteristics of an IT practitioner, I think my strongest quality is responsibility, which
+          maps directly to the first of the 5 R&rsquo;s. When I work on group projects, I take ownership of my work, make
+          sure I meet my deadlines, and never try to hide my mistakes. If a script I wrote breaks a system, I believe in
+          admitting it and fixing it instead of blaming others or pretending it wasn&rsquo;t me. On the flip side, the
+          area where I have the most room to grow is readiness to learn. It is easy to get comfortable just doing the
+          homework assignments and stopping there. But because technology changes so fast, we have to be lifelong
+          learners. I want to build a habit of reading technical documentation on my own instead of waiting for an
+          instructor to explain everything. In the future, I want to learn more about cloud database administration and
+          modern cybersecurity frameworks. Keeping up with these fields will require me to attend seminars, earn
+          certifications, and work on personal projects even after I graduate.</p>
+
+        <p>As IT professionals, we often get administrative access to sensitive resources like passwords, student records,
+          and company files. Protecting this confidentiality is a major ethical duty because privacy is a matter of
+          respect and trust. Just because you have the technical ability to view someone&rsquo;s files doesn&rsquo;t mean
+          you have the right to do so. For instance, if I noticed a coworker had written their password on a sticky note
+          next to their computer screen, I wouldn&rsquo;t ignore it or use it to poke around. A professional response is
+          to privately and politely point it out to them. I would say, &ldquo;Hey, I noticed your password is visible
+          right here. It&rsquo;s a pretty big security risk, so you might want to memorize it or use a secure password
+          manager.&rdquo; This protects both their personal accounts and the security of the whole organization without
+          causing unnecessary drama or embarrassment.</p>
+
+        <p>Our day-to-day conduct, both offline and online, defines our professional reputation. In school or during a
+          future internship, showing professionalism means arriving on time, working well with classmates, and documenting
+          code properly so the next person can maintain it. It also shows in how we talk to users. Instead of being
+          patronizing and saying &ldquo;your system is broken because you don&rsquo;t know how to use it,&rdquo; a
+          professional communicator is patient and says, &ldquo;The system appears to have encountered an error. Let me
+          check the configuration and help you resolve it.&rdquo; Digital professionalism is just as important. My social
+          media posts, comments, and online behavior represent me as a future practitioner. What I post online stays
+          there, and employers do look at social media. I need to make sure my digital presence is respectful and
+          doesn&rsquo;t showcase unprofessional behaviors or unauthorized school data.</p>
+
+        <p>As a future IT professional, I commit myself to taking full ownership of my mistakes and correcting them
+          honestly, safeguarding the privacy of any user data or systems I am entrusted with, and maintaining an active
+          readiness to learn by continuously upgrading my skills outside the classroom. By practicing these principles in
+          my daily studies and group projects, I hope to build a reputation as a reliable and ethical IT practitioner
+          before I even graduate.</p>
+      </div>
+    </article>
+  </main>
 
   <script>
+    let currentDocId = 'doc-ai-learned';
+
+    function switchDoc(docId) {
+      currentDocId = docId;
+
+      // Update active article
+      document.querySelectorAll('.reflection-doc').forEach(doc => {
+        doc.classList.remove('active');
+      });
+      const activeDoc = document.getElementById(docId);
+      if (activeDoc) {
+        activeDoc.classList.add('active');
+        const title = activeDoc.getAttribute('data-title');
+        if (title) {
+          document.title = title;
+        }
+      }
+
+      // Update active tab button
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      if (docId === 'doc-ai-learned') {
+        document.getElementById('tab-ai-learned').classList.add('active');
+        history.replaceState(null, null, '#ai-literacy');
+      } else if (docId === 'doc-professional') {
+        document.getElementById('tab-professional').classList.add('active');
+        history.replaceState(null, null, '#professional');
+      }
+
+      // Scroll smoothly to top of paper
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Hash or URL parameter checking on initial load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('professional') || hash.includes('practitioner')) {
+        switchDoc('doc-professional');
+      } else {
+        switchDoc('doc-ai-learned');
+      }
+    });
+
     function downloadAsPDF() {
       const btn = document.getElementById('downloadPdfBtn');
+      const originalBtnHtml = btn.innerHTML;
       btn.textContent = 'Generating...';
       btn.disabled = true;
 
-      const element = document.querySelector('.page');
-      
-      // Temporarily remove shadow for a clean PDF edge
-      const originalShadow = element.style.boxShadow;
-      element.style.boxShadow = 'none';
+      const activeDoc = document.getElementById(currentDocId);
+      const filename = activeDoc.getAttribute('data-filename') || 'Reflection.pdf';
+      const pages = activeDoc.querySelectorAll('.page');
 
-      // Margin is 0 because the .page element already has 25.4mm padding
+      // Temporarily store original styles for clean PDF export without browser margins or shadows
+      const originalStyles = [];
+      pages.forEach(p => {
+        originalStyles.push({
+          boxShadow: p.style.boxShadow,
+          margin: p.style.margin
+        });
+        p.style.boxShadow = 'none';
+        p.style.margin = '0 auto';
+      });
+
       const opt = {
         margin:       0,
-        filename:     'Reflection_Becoming_a_Professional_IT_Practitioner.pdf',
+        filename:     filename,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['css', 'legacy'] }
       };
 
-      html2pdf().set(opt).from(element).save().then(() => {
-        element.style.boxShadow = originalShadow;
-        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF`;
+      html2pdf().set(opt).from(activeDoc).save().then(() => {
+        // Restore styles
+        pages.forEach((p, index) => {
+          p.style.boxShadow = originalStyles[index].boxShadow;
+          p.style.margin = originalStyles[index].margin;
+        });
+        btn.innerHTML = originalBtnHtml;
+        btn.disabled = false;
+      }).catch(err => {
+        console.error('PDF generation error:', err);
+        pages.forEach((p, index) => {
+          p.style.boxShadow = originalStyles[index].boxShadow;
+          p.style.margin = originalStyles[index].margin;
+        });
+        btn.innerHTML = originalBtnHtml;
         btn.disabled = false;
       });
     }
