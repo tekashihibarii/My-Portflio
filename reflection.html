@@ -307,6 +307,13 @@
         </svg>
         Becoming a Professional IT Practitioner
       </button>
+
+      <button class="tab-btn" id="tab-cloud" onclick="switchDoc('doc-cloud')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+        </svg>
+        Cloud Computing &amp; Microsoft Credentials
+      </button>
     </nav>
 
     <div class="toolbar-right">
@@ -399,6 +406,30 @@
           before I even graduate.</p>
       </div>
     </article>
+
+    <!-- REFLECTION 3: Building Your IT Career: Opportunities in Cloud Computing and Microsoft Credentials -->
+    <article class="reflection-doc" id="doc-cloud" data-title="Building Your IT Career: Opportunities in Cloud Computing and Microsoft Credentials" data-filename="Reflection_Cloud_Computing_and_Microsoft_Credentials.pdf">
+      <!-- Page 1 of 2 -->
+      <div class="page" id="doc-cloud-page1">
+        <h1 class="paper-title no-indent">Building Your IT Career: Opportunities in Cloud Computing and Microsoft Credentials</h1>
+        <p class="paper-subtitle no-indent">Seminar Reflection Paper | Guest Speaker: Ms. Mizel Narag</p>
+
+        <p>Attending the seminar &ldquo;Building Your IT Career: Opportunities in Cloud Computing and Microsoft Credentials&rdquo; with Ms. Mizel Narag was a much-needed reality check for me as a BSIT student. When you are busy keeping up with daily coursework, it is easy to assume that simply earning your diploma will be enough to land a good job. The most important lesson I took away from Ms. Narag&rsquo;s talk is that a degree is really just the starting point. The IT industry changes too quickly for anyone to rely solely on classroom theory, and employers are looking for graduates who take the initiative to learn industry-standard tools on their own.</p>
+
+        <p>Before this session, my understanding of cloud computing was pretty surface-level. I knew companies used it for storage and hosting, but I didn&rsquo;t realize how completely it dominates modern IT infrastructure. Listening to the talk opened my eyes to the fact that cloud computing isn&rsquo;t just one single job; it is a massive field with opportunities in security, networking, data management, and software development. Knowing that companies are actively struggling to find people who understand cloud platforms makes the future feel a lot less intimidating, provided I put in the work now.</p>
+
+        <p>This is where Microsoft certifications come into play. One of the hardest parts about being a fresh graduate is the classic catch-22: you need experience to get a job, but you need a job to get experience. Ms. Narag showed us that earning Microsoft credentials is one of the best ways around this problem. Because Microsoft&rsquo;s ecosystem, from Azure to Microsoft 365, is used by businesses all over the world, having an official certification proves to hiring managers that you actually know how to use their tools. It gives you a clear advantage over other applicants who only have a resume listing their college subjects.</p>
+
+        <p>Inspired by the seminar, I want to focus on developing practical skills in Microsoft Azure. Specifically, I want to start with the basics: learning how to deploy virtual machines, manage cloud storage, and understand basic cloud security protocols, with the goal of passing the Azure Fundamentals (AZ-900) exam. To apply what I learned from Ms. Narag, I plan to stop treating my education as something that only happens inside the classroom. I am going to start using free modules on Microsoft Learn this semester and try to incorporate cloud hosting into our upcoming school projects so I have real work to put into my e-portfolio.</p>
+
+        <p>Finally, the seminar made me think hard about whether it is smart to apply directly to a massive company like Microsoft right after graduation. Based on the insights shared, I think applying directly for their entry-level or graduate programs is worth a shot if you have done the extra work to stand out. However, for the average graduate, it is probably more practical to start at a smaller local IT company or a Microsoft partner organization first. Working at a smaller firm lets you wear different hats, make mistakes, and get your hands dirty with real-world troubleshooting before stepping into a high-pressure corporate giant. If I do decide to aim straight for Microsoft, I know my transcript won&rsquo;t be enough. I will need a solid portfolio of working projects, at least one foundational</p>
+      </div>
+
+      <!-- Page 2 of 2 -->
+      <div class="page" id="doc-cloud-page2">
+        <p>Microsoft certification under my belt, strong communication skills, and the confidence to prove that I am ready to keep learning from day one.</p>
+      </div>
+    </article>
   </main>
 
   <script>
@@ -430,6 +461,9 @@
       } else if (docId === 'doc-professional') {
         document.getElementById('tab-professional').classList.add('active');
         history.replaceState(null, null, '#professional');
+      } else if (docId === 'doc-cloud') {
+        document.getElementById('tab-cloud').classList.add('active');
+        history.replaceState(null, null, '#cloud-credentials');
       }
 
       // Scroll smoothly to top of paper
@@ -439,7 +473,9 @@
     // Hash or URL parameter checking on initial load
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash.includes('professional') || hash.includes('practitioner')) {
+      if (hash.includes('cloud') || hash.includes('microsoft') || hash.includes('azure')) {
+        switchDoc('doc-cloud');
+      } else if (hash.includes('professional') || hash.includes('practitioner')) {
         switchDoc('doc-professional');
       } else {
         switchDoc('doc-ai-learned');
