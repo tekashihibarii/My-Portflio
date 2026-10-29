@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.toggle('open');
             sidebarOverlay.classList.toggle('open');
             document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+            if (hamburger) hamburger.setAttribute('aria-expanded', sidebar.classList.contains('open') ? 'true' : 'false');
         }
     }
 

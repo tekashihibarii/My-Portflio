@@ -25,8 +25,8 @@ body.light-theme {
     --bg-color: #f7f7f7;
     --text-primary: #111111;
     --text-secondary: #555555;
-    --accent-color: #5c8500;
-    --accent-hover: #4a6a00;
+    --accent-color: #577500;
+    --accent-hover: #466300;
     --border-color: #dddddd;
     --card-bg: #ffffff;
 
@@ -36,7 +36,7 @@ body.light-theme {
     --overlay-bg: rgba(255, 255, 255, 0.8);
     --placeholder-grad: linear-gradient(135deg, #eeeeee, #dddddd);
     --coming-soon-grad: linear-gradient(135deg, #e0e0e0, #d0d0d0);
-    --cursor-hover-bg: rgba(92, 133, 0, 0.1);
+    --cursor-hover-bg: rgba(87, 117, 0, 0.1);
 }
 
 * {
@@ -257,6 +257,15 @@ a {
 }
 
 /* Hamburger Menu */
+.hamburger,
+.close-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -572,6 +581,12 @@ body.light-theme .profile-glasses-img {
     padding-right: 4rem;
     scrollbar-width: none;
     /* Firefox */
+}
+
+.horizontal-scroll-container:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: 8px;
 }
 
 .horizontal-scroll-container::-webkit-scrollbar {
@@ -1045,9 +1060,13 @@ body.light-theme .cert-modal-footer {
 }
 
 .contact-desc {
-    color: var(--text-secondary);
+    color: #7b7b7b;
     font-size: 1.2rem;
     margin-bottom: 4rem;
+}
+
+body.light-theme .contact-desc {
+    color: #111111;
 }
 
 .contact-form {
