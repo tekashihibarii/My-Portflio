@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrian Paul | Portfolio</title>
+    <meta name="description" content="Portfolio of Adrian Paul B. Lagura, BSIT Student & Developer">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Grain Overlay -->
+    <div class="grain-overlay"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar">
+        <div class="logo">ADRIAN<span class="accent">.</span></div>
+        <ul class="nav-links">
+            <li><a href="#intro" class="active">INTRO</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#work">WORK</a></li>
+            <li><a href="#skills">SKILLS</a></li>
+            <li><a href="#certificates">CERTIFICATES</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <!-- Moon icon (SVG) -->
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-moon">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <!-- Sun icon (SVG) hidden by default -->
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-sun" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            <a href="reflection.html" class="resume-btn">REFLECTION</a>
+            <a href="resume.html" class="resume-btn">RESUME</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar for Mobile -->
+    <aside class="sidebar">
+        <div class="close-btn">&times;</div>
+        <ul class="sidebar-links">
+            <li><a href="#intro" class="sidebar-link active">INTRO</a></li>
+            <li><a href="#about" class="sidebar-link">ABOUT</a></li>
+            <li><a href="#work" class="sidebar-link">WORK</a></li>
+            <li><a href="#skills" class="sidebar-link">SKILLS</a></li>
+            <li><a href="#certificates" class="sidebar-link">CERTIFICATES</a></li>
+            <li><a href="#contact" class="sidebar-link">CONTACT</a></li>
+        </ul>
+        <div class="sidebar-actions">
+            <a href="reflection.html" class="resume-btn sidebar-resume">REFLECTION</a>
+            <a href="resume.html" class="resume-btn sidebar-resume">RESUME</a>
+        </div>
+    </aside>
+    <div class="sidebar-overlay"></div>
+
+    <main>
+        <!-- INTRO SECTION -->
+        <section id="intro" class="intro-section fade-in">
+            <div class="intro-content">
+                <div class="subtitle">ADRIAN PAUL LAGURA <span class="dash">-</span> FULL-STACK DEVELOPER</div>
+                <h1 class="main-title">Learning, Building, and Exploring Modern Technology.</h1>
+                <p class="description">Just a student who loves tech, learning how things work, and Building stuff as I
+                    go.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#work" class="primary-btn">VIEW WORK</a>
+                    <a href="#contact" class="secondary-btn">GET IN TOUCH</a>
+                </div>
+            </div>
+            <div class="intro-image-container">
+                <img src="assets/Profile.jpg" alt="ADRIAN PAUL LAGURA" class="profile-image" id="profileImage">
+                <img src="assets/profile_glasses.jpg" alt="ADRIAN PAUL LAGURA with glasses" class="profile-image profile-glasses-img" id="profileGlasses">
+            </div>
+            <div class="scroll-indicator">
+                <span>SCROLL</span>
+                <div class="line"></div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section fade-in">
+            <div class="section-header">
+                <span class="section-num">01</span>
+                <span class="dash">-</span>
+                <span class="section-name">ABOUT ME</span>
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">The story so far</h2>
+                <div class="about-text">
+                    <p>I'm a dedicated 4th-year Bachelor of Science in Information Technology student at JH Cerilles State College (Mati, San Miguel, Zamboanga del Sur), currently preparing for my 300-hour On-the-Job Training (OJT). My journey started with a curiosity about how technology powers everyday life, evolving into a hands-on drive to build responsive software, master computer systems servicing, and explore modern cloud and AI technologies.</p>
+                    <p>I focus on building functional web applications while steadily sharpening my grasp of computer systems servicing, hardware troubleshooting, and AI-driven development. When I'm not studying or debugging code, I'm actively pursuing industry-standard credentials, experimenting with emerging AI frameworks, and preparing for future Microsoft Azure certification.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK SECTION -->
+        <section id="work" class="work-section fade-in">
+            <div class="section-header">
+                <span class="section-num">02</span>
+                <span class="dash">-</span>
+                <span class="section-name">SELECTED WORK</span>
+            </div>
+            <div class="work-header-flex">
+                <h2 class="section-title">Projects</h2>
+                <a href="#" class="view-all">FULL ARCHIVE &rarr;</a>
+            </div>
+
+            <div class="horizontal-scroll-container">
+                <div class="projects-wrapper">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-img-placeholder coming-soon-overlay">
+                            <span>COMING SOON</span>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-num">01</span>
+                            <h3>Project Alpha</h3>
+                            <p>Coming Soon</p>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-img-placeholder coming-soon-overlay">
+                            <span>COMING SOON</span>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-num">02</span>
+                            <h3>Project Beta</h3>
+                            <p>Coming Soon</p>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-img-placeholder coming-soon-overlay">
+                            <span>COMING SOON</span>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-num">03</span>
+                            <h3>Project Gamma</h3>
+                            <p>Coming Soon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explore-projects">
+                <a href="#">EXPLORE ALL PROJECTS &rarr;</a>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="skills-section fade-in">
+            <div class="section-header">
+                <span class="section-num">03</span>
+                <span class="dash">-</span>
+                <span class="section-name">EXPERTISE</span>
+            </div>
+            <h2 class="section-title">Skills & Tools</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Software & Web</h3>
+                    <ul>
+                        <li>HTML5 / CSS3 / JavaScript</li>
+                        <li>React / Modern Frontend</li>
+                        <li>Programming & Logic</li>
+                        <li>RESTful APIs / Databases</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Systems & Hardware</h3>
+                    <ul>
+                        <li>Computer System Servicing</li>
+                        <li>Hardware & Network Diagnostics</li>
+                        <li>System Troubleshooting</li>
+                        <li>IT Operations & Support</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Design, AI & Cloud</h3>
+                    <ul>
+                        <li>Graphic Design & Digital Media</li>
+                        <li>AI-Driven Development (AI Dev PH)</li>
+                        <li>Cloud Computing & Azure Basics</li>
+                        <li>Git / GitHub / Version Control</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATES SECTION -->
+        <section id="certificates" class="certificates-section fade-in">
+            <div class="section-header">
+                <span class="section-num">04</span>
+                <span class="dash">-</span>
+                <span class="section-name">CERTIFICATIONS</span>
+            </div>
+            <div class="certificates-header-flex">
+                <h2 class="section-title">Credentials & Badges</h2>
+                <span class="certificates-count">4 Verified</span>
+            </div>
+
+            <div class="certificates-grid">
+                <!-- Certificate 1: AI Literacy -->
+                <div class="certificate-card" data-cert="assets/certificates/cert-ai-literacy.png" data-title="Introduction to AI Literacy and Responsible Use" data-issuer="Mapúa University × CHED / ACHIEVE">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/certificates/cert-ai-literacy.png" alt="Introduction to AI Literacy and Responsible Use Certificate" class="cert-img" loading="lazy">
+                        <div class="cert-overlay">
+                            <span class="view-btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                View Certificate
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <div class="cert-meta">
+                            <span class="cert-badge">Mapúa × CHED</span>
+                            <span class="cert-date">14 Sep 2026</span>
+                        </div>
+                        <h3 class="cert-title">Introduction to AI Literacy and Responsible Use</h3>
+                        <p class="cert-id">Credential ID: <code>Y4R3RMLDG6N8B</code></p>
+                        <div class="cert-actions">
+                            <button class="cert-btn view-cert-btn" type="button">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                VIEW CERTIFICATE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 2: Modern AI -->
+                <div class="certificate-card" data-cert="assets/certificates/cert-modern-ai.png" data-title="Introduction to Modern AI" data-issuer="Cisco Networking Academy">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/certificates/cert-modern-ai.png" alt="Introduction to Modern AI Certificate" class="cert-img" loading="lazy">
+                        <div class="cert-overlay">
+                            <span class="view-btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                View Certificate
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <div class="cert-meta">
+                            <span class="cert-badge">Cisco Academy</span>
+                            <span class="cert-date">22 Sep 2026</span>
+                        </div>
+                        <h3 class="cert-title">Introduction to Modern AI</h3>
+                        <p class="cert-id">Credential ID: <code>17517023-752b-40c6</code></p>
+                        <div class="cert-actions">
+                            <button class="cert-btn view-cert-btn" type="button">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                VIEW CERTIFICATE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 3: Computer Hardware Basics -->
+                <div class="certificate-card" data-cert="assets/certificates/cert-hardware-basics.png" data-title="Computer Hardware Basics" data-issuer="Cisco Networking Academy × DICT-ITU DTC">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/certificates/cert-hardware-basics.png" alt="Computer Hardware Basics Certificate" class="cert-img" loading="lazy">
+                        <div class="cert-overlay">
+                            <span class="view-btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                View Certificate
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <div class="cert-meta">
+                            <span class="cert-badge">Cisco × DICT</span>
+                            <span class="cert-date">14 Sep 2026</span>
+                        </div>
+                        <h3 class="cert-title">Computer Hardware Basics</h3>
+                        <p class="cert-id">Credential ID: <code>5ea20721-a0db-41a4</code></p>
+                        <div class="cert-actions">
+                            <button class="cert-btn view-cert-btn" type="button">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                VIEW CERTIFICATE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 4: Fundamentals of AI-Driven Development -->
+                <div class="certificate-card" data-cert="assets/certificates/cert-ai-driven-dev.png" data-title="Fundamentals of AI-Driven Development" data-issuer="AI Dev PH Discord Community (Mar Wie Ang)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/certificates/cert-ai-driven-dev.png" alt="Fundamentals of AI-Driven Development Certificate" class="cert-img" loading="lazy">
+                        <div class="cert-overlay">
+                            <span class="view-btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                View Certificate
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <div class="cert-meta">
+                            <span class="cert-badge">AI Dev PH</span>
+                            <span class="cert-date">19 Oct 2026</span>
+                        </div>
+                        <h3 class="cert-title">Fundamentals of AI-Driven Development</h3>
+                        <p class="cert-id">Credential ID: <code>MWA-S8PC-CYV9</code></p>
+                        <div class="cert-actions">
+                            <button class="cert-btn view-cert-btn" type="button">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                VIEW CERTIFICATE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="contact-section fade-in">
+            <div class="section-header">
+                <span class="section-num">05</span>
+                <span class="dash">-</span>
+                <span class="section-name">GET IN TOUCH</span>
+            </div>
+            <div class="contact-content">
+                <h2 class="section-title">Let's work together.</h2>
+                <p class="contact-desc">Feel free to reach out if you're looking for an IT intern / trainee, have an opportunity, or simply want to connect.<br>
+                <span style="display: inline-block; margin-top: 8px;">
+                    <strong>Email:</strong> <a href="mailto:adrianlagura04@gmail.com" style="color: var(--accent-color, #c5f82a); text-decoration: none;">adrianlagura04@gmail.com</a> &nbsp;&bull;&nbsp;
+                    <strong>Phone:</strong> 0962 303 7994 &nbsp;&bull;&nbsp;
+                    <strong>Location:</strong> Poblacion, Guipos, Zamboanga del Sur
+                </span>
+                </p>
+
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="4" required placeholder="Your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Certificate Lightbox Modal -->
+    <div id="certModal" class="cert-modal" aria-hidden="true" role="dialog">
+        <div class="cert-modal-backdrop"></div>
+        <div class="cert-modal-dialog">
+            <button class="cert-modal-close" id="certModalClose" aria-label="Close modal">&times;</button>
+            <div class="cert-modal-body">
+                <img id="certModalImg" src="" alt="Certificate Preview" class="cert-modal-image">
+            </div>
+            <div class="cert-modal-footer">
+                <div class="cert-modal-info">
+                    <h3 id="certModalTitle">Certificate Title</h3>
+                    <p id="certModalIssuer">Issuer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">ADRIAN<span class="accent">.</span></div>
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 ADRIAN PAUL LAGURA. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

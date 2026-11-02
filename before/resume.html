@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrian Paul B. Lagura | Resume</title>
+  <meta name="description" content="Resume of Adrian Paul B. Lagura, 4th-year BSIT Student seeking OJT position">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0ede8;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+
+    /* Fixed Top Toolbar */
+    .toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      min-height: 56px;
+      background: #1e1e1e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 1.5rem;
+      z-index: 100;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-link {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .back-link:hover {
+      color: #c5f82a;
+    }
+
+    .doc-badge {
+      background: rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: 'Fira Code', monospace;
+      letter-spacing: 0.5px;
+    }
+
+    .dl-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #c5f82a;
+      color: #111;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .dl-btn:hover {
+      background: #b1e025;
+      transform: translateY(-1px);
+    }
+
+    .print-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .print-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Page Area */
+    .page-shadow {
+      padding-top: 86px;
+      padding-bottom: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* A4 Resume Paper */
+    .resume-sheet {
+      background: #ffffff;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 24mm 22mm;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.14);
+      border-radius: 2px;
+      box-sizing: border-box;
+      font-size: 10pt;
+      line-height: 1.55;
+      color: #222;
+      position: relative;
+    }
+
+    /* Header */
+    .resume-header {
+      text-align: center;
+      border-bottom: 2px solid #222;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .resume-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #111;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .resume-contact {
+      font-size: 9.5pt;
+      color: #444;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .resume-contact a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .resume-contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* Section Styles */
+    .resume-section {
+      margin-bottom: 16px;
+    }
+
+    .section-heading {
+      font-size: 10.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #111;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 3px;
+      margin-bottom: 8px;
+    }
+
+    p.objective-text {
+      text-align: justify;
+      color: #333;
+    }
+
+    .entry {
+      margin-bottom: 10px;
+    }
+
+    .entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .entry-title {
+      font-weight: 700;
+      color: #111;
+    }
+
+    .entry-date {
+      font-size: 9pt;
+      color: #555;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .entry-sub {
+      font-style: italic;
+      color: #444;
+      margin-top: 1px;
+    }
+
+    .skills-block {
+      margin-bottom: 8px;
+    }
+
+    .skills-block strong {
+      display: inline-block;
+      width: 150px;
+      color: #111;
+    }
+
+    .skills-block span {
+      color: #333;
+    }
+
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .cert-item-title {
+      font-weight: 600;
+      color: #111;
+    }
+
+    .cert-item-issuer {
+      color: #555;
+      font-size: 9pt;
+    }
+
+    .cert-item-id {
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      background: #f4f4f4;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    ul.clean-list {
+      list-style-type: square;
+      padding-left: 20px;
+      color: #333;
+    }
+
+    ul.clean-list li {
+      margin-bottom: 4px;
+    }
+
+    @media print {
+      .toolbar {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .page-shadow {
+        padding: 0;
+      }
+
+      .resume-sheet {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        padding: 15mm 15mm;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .resume-sheet {
+        width: 100%;
+        margin: 0;
+        padding: 16mm 12mm;
+        border-radius: 0;
+      }
+
+      .skills-block strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .entry-header {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="toolbar">
+    <div class="toolbar-left">
+      <a href="index.html" class="back-link" title="Return to Adrian's Portfolio">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        Back to Portfolio
+      </a>
+      <span class="doc-badge">CV / RESUME</span>
+    </div>
+
+    <div class="toolbar-right">
+      <button class="print-btn" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Print
+      </button>
+      <a href="assets/adrian-lagura-resume.pdf" download="Adrian_Paul_Lagura_Resume.pdf" class="dl-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Download PDF
+      </a>
+    </div>
+  </header>
+
+  <main class="page-shadow">
+    <article class="resume-sheet">
+      <!-- HEADER -->
+      <header class="resume-header">
+        <h1 class="resume-name">Adrian Paul B. Lagura</h1>
+        <div class="resume-contact">
+          <span>Poblacion, Guipos, Zamboanga del Sur</span>
+          <span>&bull;</span>
+          <span><a href="tel:09623037994">0962 303 7994</a></span>
+          <span>&bull;</span>
+          <span><a href="mailto:adrianlagura04@gmail.com">adrianlagura04@gmail.com</a></span>
+        </div>
+      </header>
+
+      <!-- CAREER OBJECTIVE -->
+      <section class="resume-section">
+        <h2 class="section-heading">Career Objective</h2>
+        <p class="objective-text">
+          Fourth-year Bachelor of Science in Information Technology student seeking an On-the-Job Training (OJT) position
+          to complete 300 training hours. I aim to apply my skills in programming, graphic design, and computer systems
+          servicing in a professional environment, while gaining practical experience and contributing to the
+          institution's technical operations.
+        </p>
+      </section>
+
+      <!-- EDUCATIONAL ATTAINMENT -->
+      <section class="resume-section">
+        <h2 class="section-heading">Educational Attainment</h2>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Bachelor of Science in Information Technology (4th Year)</span>
+            <span class="entry-date">Expected 2026–2027</span>
+          </div>
+          <div class="entry-sub">JH Cerilles State College — Mati, San Miguel, Zamboanga del Sur</div>
+        </div>
+        <div class="entry" style="margin-top: 8px;">
+          <div class="entry-header">
+            <span class="entry-title">Senior High School – Information and Communications Technology (ICT) Strand</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFESSIONAL CERTIFICATIONS -->
+      <section class="resume-section">
+        <h2 class="section-heading">Professional Eligibility &amp; Certifications</h2>
+        <div class="cert-item">
+          <div>
+            <div class="cert-item-title">Fundamentals of AI-Driven Development</div>
+            <div class="cert-item-issuer">AI Dev PH Discord Community (Instructor: Mar Wie Ang)</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="entry-date">19 Oct 2026</div>
+            <span class="cert-item-id">ID: MWA-S8PC-CYV9</span>
+          </div>
+        </div>
+
+        <div class="cert-item" style="margin-top: 6px;">
+          <div>
+            <div class="cert-item-title">Introduction to AI Literacy and Responsible Use</div>
+            <div class="cert-item-issuer">Map&uacute;a University &times; CHED / ACHIEVE</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="entry-date">14 Sep 2026</div>
+            <span class="cert-item-id">ID: Y4R3RMLDG6N8B</span>
+          </div>
+        </div>
+
+        <div class="cert-item" style="margin-top: 6px;">
+          <div>
+            <div class="cert-item-title">Introduction to Modern AI</div>
+            <div class="cert-item-issuer">Cisco Networking Academy</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="entry-date">22 Sep 2026</div>
+            <span class="cert-item-id">ID: 17517023-752b-40c6</span>
+          </div>
+        </div>
+
+        <div class="cert-item" style="margin-top: 6px;">
+          <div>
+            <div class="cert-item-title">Computer Hardware Basics</div>
+            <div class="cert-item-issuer">Cisco Networking Academy &times; DICT-ITU DTC</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="entry-date">14 Sep 2026</div>
+            <span class="cert-item-id">ID: 5ea20721-a0db-41a4</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS AND COMPETENCIES -->
+      <section class="resume-section">
+        <h2 class="section-heading">Skills &amp; Competencies</h2>
+        <div class="skills-block">
+          <strong>Technical Skills:</strong>
+          <span>Programming and Software Development, Computer System Servicing, Troubleshooting and Technical Support, Graphic Design, Web Development (HTML5, CSS3, JavaScript, React basics)</span>
+        </div>
+        <div class="skills-block">
+          <strong>Interpersonal Skills:</strong>
+          <span>Adaptability, Resilience under Pressure, Collaborative Team Player</span>
+        </div>
+        <div class="skills-block">
+          <strong>Soft Skills:</strong>
+          <span>Effective Communication Skills, Interpersonal Communication &amp; People Skills, Problem-Solving</span>
+        </div>
+      </section>
+
+      <!-- TRAININGS, SEMINARS, AND WORKSHOPS -->
+      <section class="resume-section">
+        <h2 class="section-heading">Trainings, Seminars, &amp; Workshops</h2>
+        <ul class="clean-list">
+          <li><strong>Building Your IT Career: Opportunities in Cloud Computing and Microsoft Credentials</strong> &mdash; Guest Speaker: Ms. Mizel Narag (Cloud infrastructure, Microsoft Azure &amp; M365 roadmap)</li>
+          <li><strong>Building and Shipping Software with AI</strong> &mdash; AI Dev PH Course &amp; Community Workshop (Instructor: Mar Wie Ang)</li>
+          <li><strong>AI Literacy &amp; Responsible Use Micro-Credential</strong> &mdash; Map&uacute;a University asCEnd Learning</li>
+          <li><strong>Foundational Computer Hardware &amp; Modern AI Sessions</strong> &mdash; Cisco Networking Academy &amp; DICT-ITU DTC</li>
+        </ul>
+      </section>
+
+      <!-- CHARACTER REFERENCES -->
+      <section class="resume-section" style="margin-bottom: 0;">
+        <h2 class="section-heading">Character References</h2>
+        <p style="color: #555; font-style: italic;">Available upon request.</p>
+      </section>
+    </article>
+  </main>
+</body>
+
+</html>
