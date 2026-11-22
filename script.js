@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         syncThemeUI(isLight);
     }
 
-    // Initialize icons/attributes from theme-init.js class or saved storage
     const initialLight =
         root.classList.contains('light-theme') ||
         body.classList.contains('light-theme');
@@ -50,50 +49,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Consolidated rAF-Throttled Passive Scroll Handler
+    // 2. Zero-Layout-Read rAF Scroll Progress & IntersectionObserver Active Nav
     const scrollProgress = document.getElementById('scrollProgress');
     const navbar = document.querySelector('.navbar');
     const sections = document.querySelectorAll('main > section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
+    let maxScroll = 0;
+    let navScrolled = false;
+    let currentActiveId = '';
     let scrollTicking = false;
+    let portraitRect = null;
+
+    function recalcMetrics() {
+        maxScroll = Math.max(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
+    }
+
+    function setActiveNav(id) {
+        if (!id || id === currentActiveId) return;
+        currentActiveId = id;
+        const hash = `#${id}`;
+        navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === hash);
+        });
+        sidebarLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === hash);
+        });
+    }
 
     function updateOnScroll() {
         scrollTicking = false;
+        portraitRect = null;
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const maxScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
         if (scrollProgress) {
-            const pct = maxScroll > 0 ? Math.min(100, Math.max(0, (scrollTop / maxScroll) * 100)) : 0;
-            scrollProgress.style.width = `${pct}%`;
+            const ratio = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
+            scrollProgress.style.transform = `scaleX(${ratio})`;
         }
 
-        if (navbar) {
-            navbar.classList.toggle('scrolled', scrollTop > 50);
+        const isScrolled = scrollTop > 50;
+        if (isScrolled !== navScrolled) {
+            navScrolled = isScrolled;
+            if (navbar) navbar.classList.toggle('scrolled', isScrolled);
         }
 
-        let current = '';
         if (maxScroll > 0 && scrollTop + 2 >= maxScroll) {
             const lastSection = sections[sections.length - 1];
-            if (lastSection) current = lastSection.id;
-        } else {
-            sections.forEach((section) => {
-                if (scrollTop >= section.offsetTop - 280) {
-                    current = section.id;
-                }
-            });
-        }
-
-        if (current) {
-            navLinks.forEach((link) => {
-                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-            });
-            sidebarLinks.forEach((link) => {
-                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-            });
+            if (lastSection) setActiveNav(lastSection.id);
+        } else if (scrollTop < 120 && sections[0]) {
+            setActiveNav(sections[0].id);
         }
     }
+
+    if ('IntersectionObserver' in window && sections.length) {
+        const navObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveNav(entry.target.id);
+                    }
+                });
+            },
+            { root: null, rootMargin: '-35% 0px -55% 0px', threshold: 0 }
+        );
+        sections.forEach((section) => navObserver.observe(section));
+    }
+
+    let resizeTimer = null;
+    window.addEventListener(
+        'resize',
+        () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                recalcMetrics();
+                updateOnScroll();
+            }, 150);
+        },
+        { passive: true }
+    );
 
     window.addEventListener(
         'scroll',
@@ -105,9 +139,16 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         { passive: true }
     );
+
+    window.addEventListener('load', () => {
+        recalcMetrics();
+        updateOnScroll();
+    });
+
+    recalcMetrics();
     updateOnScroll();
 
-    // 3. Smooth GPU Custom Cursor (Desktop Fine-Pointer Only, No Reduced Motion)
+    // 3. Refresh-Rate-Independent GPU Custom Cursor (Fine Pointer, No Reduced Motion)
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -118,28 +159,46 @@ document.addEventListener('DOMContentLoaded', () => {
         let mouseY = -100;
         let outlineX = -100;
         let outlineY = -100;
+        let currentScale = 1;
+        let targetScale = 1;
         let cursorActive = false;
         let rafId = null;
+        let lastTime = 0;
 
         const interactiveSelector =
             'a, button, input, textarea, .intro-image-container, .project-card, .certificate-card, .cert-img-wrapper';
 
-        function renderCursor() {
+        function startCursorLoop() {
+            if (!rafId) {
+                lastTime = 0;
+                rafId = requestAnimationFrame(renderCursor);
+            }
+        }
+
+        function renderCursor(now) {
+            const dt = lastTime ? Math.min(0.05, Math.max(0.001, (now - lastTime) / 1000)) : 1 / 60;
+            lastTime = now;
+            const factor = 1 - Math.exp(-22 * dt);
+
             const dx = mouseX - outlineX;
             const dy = mouseY - outlineY;
+            const ds = targetScale - currentScale;
 
-            if (Math.abs(dx) < 0.25 && Math.abs(dy) < 0.25) {
+            if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2 && Math.abs(ds) < 0.005) {
                 outlineX = mouseX;
                 outlineY = mouseY;
+                currentScale = targetScale;
                 rafId = null;
+                lastTime = 0;
             } else {
-                outlineX += dx * 0.18;
-                outlineY += dy * 0.18;
+                outlineX += dx * factor;
+                outlineY += dy * factor;
+                currentScale += ds * factor;
                 rafId = requestAnimationFrame(renderCursor);
             }
 
             cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%) scale(${currentScale.toFixed(3)})`;
         }
 
         window.addEventListener(
@@ -155,16 +214,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     cursorDot.classList.add('cursor-visible');
                     cursorOutline.classList.add('cursor-visible');
                 }
-                if (!rafId) {
-                    rafId = requestAnimationFrame(renderCursor);
-                }
+                startCursorLoop();
             },
             { passive: true }
         );
 
         document.addEventListener('mouseover', (e) => {
             if (e.target.closest(interactiveSelector)) {
+                targetScale = 1.45;
                 cursorOutline.classList.add('cursor-hover');
+                if (cursorActive) startCursorLoop();
             }
         });
 
@@ -172,13 +231,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const leftTarget = e.target.closest(interactiveSelector);
             const enteredTarget = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest(interactiveSelector) : null;
             if (leftTarget && leftTarget !== enteredTarget) {
+                targetScale = 1;
                 cursorOutline.classList.remove('cursor-hover');
+                if (cursorActive) startCursorLoop();
             }
         });
 
         document.addEventListener('mouseleave', () => {
             cursorDot.classList.remove('cursor-visible');
             cursorOutline.classList.remove('cursor-visible');
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+                lastTime = 0;
+            }
         });
 
         document.addEventListener('mouseenter', () => {
@@ -201,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             },
-            { root: null, rootMargin: '0px', threshold: 0.1 }
+            { root: null, rootMargin: '0px', threshold: 0.08 }
         );
         fadeElements.forEach((el) => observer.observe(el));
     } else {
@@ -244,10 +310,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const certCards = Array.from(document.querySelectorAll('.certificate-card'));
     const filterBtns = document.querySelectorAll('.cert-filter-btn');
     const certCount = document.getElementById('certCount');
-    let activeFilter = 'all';
 
     function applyCertFilter(filter) {
-        activeFilter = filter;
         let visibleCount = 0;
 
         certCards.forEach((card) => {
@@ -268,6 +332,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? `${certCards.length} Verified`
                     : `Showing ${visibleCount} of ${certCards.length}`;
         }
+
+        recalcMetrics();
+        updateOnScroll();
     }
 
     filterBtns.forEach((btn) => {
@@ -473,7 +540,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const composedBody = `From: ${nameVal} <${emailVal}>\n\n${messageVal}`;
             const mailtoUrl = `mailto:adrianlagura04@gmail.com?subject=${encodeURIComponent(subjectVal)}&body=${encodeURIComponent(composedBody)}`;
 
-            // Launch default mail client without violating CSP form-action 'none'
             window.location.href = mailtoUrl;
 
             if (formStatus) {
@@ -510,37 +576,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9. Tactile Card Radial Spotlight & Subtle Portrait Tilt (Fine Pointer Only)
-    if (finePointer && !reducedMotion) {
-        document.querySelectorAll('.project-card, .skill-category, .stat-item, .certificate-card').forEach((card) => {
-            card.addEventListener(
-                'mousemove',
-                (e) => {
-                    const rect = card.getBoundingClientRect();
-                    card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-                    card.style.setProperty('--my', `${e.clientY - rect.top}px`);
-                },
-                { passive: true }
-            );
+    // 9. rAF-Throttled Subtle Portrait Tilt with Cached Rect (Fine Pointer Only)
+    if (finePointer && !reducedMotion && portraitToggle) {
+        let tiltRaf = null;
+        let tiltX = 0;
+        let tiltY = 0;
+
+        portraitToggle.addEventListener('mouseenter', () => {
+            portraitRect = portraitToggle.getBoundingClientRect();
         });
 
-        if (portraitToggle) {
-            portraitToggle.addEventListener(
-                'mousemove',
-                (e) => {
-                    const rect = portraitToggle.getBoundingClientRect();
-                    const nx = (e.clientX - rect.left) / rect.width - 0.5;
-                    const ny = (e.clientY - rect.top) / rect.height - 0.5;
-                    portraitToggle.style.setProperty('--tilt-y', `${(nx * 5).toFixed(2)}deg`);
-                    portraitToggle.style.setProperty('--tilt-x', `${(-ny * 5).toFixed(2)}deg`);
-                },
-                { passive: true }
-            );
-            portraitToggle.addEventListener('mouseleave', () => {
-                portraitToggle.style.setProperty('--tilt-x', '0deg');
-                portraitToggle.style.setProperty('--tilt-y', '0deg');
-            });
-        }
+        portraitToggle.addEventListener(
+            'mousemove',
+            (e) => {
+                if (!portraitRect) portraitRect = portraitToggle.getBoundingClientRect();
+                if (!portraitRect.width || !portraitRect.height) return;
+                const nx = (e.clientX - portraitRect.left) / portraitRect.width - 0.5;
+                const ny = (e.clientY - portraitRect.top) / portraitRect.height - 0.5;
+                tiltY = nx * 5;
+                tiltX = -ny * 5;
+                if (!tiltRaf) {
+                    tiltRaf = requestAnimationFrame(() => {
+                        tiltRaf = null;
+                        portraitToggle.style.setProperty('--tilt-y', `${tiltY.toFixed(2)}deg`);
+                        portraitToggle.style.setProperty('--tilt-x', `${tiltX.toFixed(2)}deg`);
+                    });
+                }
+            },
+            { passive: true }
+        );
+
+        portraitToggle.addEventListener('mouseleave', () => {
+            portraitRect = null;
+            if (tiltRaf) {
+                cancelAnimationFrame(tiltRaf);
+                tiltRaf = null;
+            }
+            portraitToggle.style.setProperty('--tilt-x', '0deg');
+            portraitToggle.style.setProperty('--tilt-y', '0deg');
+        });
     }
 
     // 10. Copyable Credential IDs

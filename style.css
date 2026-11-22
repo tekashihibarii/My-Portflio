@@ -17,10 +17,10 @@
     --font-body: 'Inter', sans-serif;
     --font-mono: 'Fira Code', monospace;
 
-    --nav-bg: rgba(10, 10, 10, 0.82);
+    --nav-bg: rgba(10, 10, 10, 0.94);
     --btn-hover-bg: rgba(255, 255, 255, 0.06);
     --shadow-color: rgba(0, 0, 0, 0.55);
-    --overlay-bg: rgba(0, 0, 0, 0.72);
+    --overlay-bg: rgba(0, 0, 0, 0.78);
     --code-bg: rgba(255, 255, 255, 0.06);
     --cursor-hover-bg: rgba(197, 248, 42, 0.1);
 }
@@ -40,10 +40,10 @@ body.light-theme {
     --card-bg: #ffffff;
     --card-bg-elevated: #efede8;
 
-    --nav-bg: rgba(246, 245, 242, 0.85);
+    --nav-bg: rgba(246, 245, 242, 0.94);
     --btn-hover-bg: rgba(0, 0, 0, 0.05);
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --overlay-bg: rgba(255, 255, 255, 0.82);
+    --overlay-bg: rgba(255, 255, 255, 0.86);
     --code-bg: rgba(0, 0, 0, 0.06);
     --cursor-hover-bg: rgba(74, 100, 0, 0.1);
 }
@@ -65,7 +65,7 @@ body {
     font-family: var(--font-body);
     line-height: 1.65;
     overflow-x: hidden;
-    transition: background-color 0.25s ease, color 0.25s ease;
+    transition: background-color 0.15s ease;
 }
 
 /* Focus accessibility */
@@ -146,12 +146,10 @@ body {
     width: 38px;
     height: 38px;
     border: 1px solid var(--accent-color);
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+    transition: background-color 0.18s ease, opacity 0.15s ease;
 }
 
 .cursor-outline.cursor-hover {
-    width: 56px;
-    height: 56px;
     background-color: var(--cursor-hover-bg);
 }
 
@@ -169,44 +167,23 @@ body {
 
 .scroll-progress-bar {
     height: 100%;
+    width: 100%;
     background-color: var(--accent-color);
-    width: 0%;
+    transform-origin: left center;
+    transform: scaleX(0);
+    will-change: transform;
 }
 
-/* Grain Overlay & Ambient Architectural Grid */
-.grain-overlay {
-    position: fixed;
+/* Ambient Architectural Backdrop */
+.ambient-bg {
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-.ambient-bg {
-    position: fixed;
-    inset: 0;
+    right: 0;
+    height: 760px;
     pointer-events: none;
     z-index: -1;
-    background-image:
-        radial-gradient(640px circle at 84% 14%, var(--accent-soft), transparent 68%),
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 48px 48px, 48px 48px;
-    mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 40%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 40%, transparent 100%);
-}
-
-html.light-theme .ambient-bg,
-body.light-theme .ambient-bg {
-    background-image:
-        radial-gradient(640px circle at 84% 14%, var(--accent-soft), transparent 68%),
-        linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-    background-size: 100% 100%, 48px 48px, 48px 48px;
+    background: radial-gradient(640px circle at 84% 16%, var(--accent-soft), transparent 70%);
 }
 
 ::selection {
@@ -261,11 +238,9 @@ a {
     justify-content: space-between;
     align-items: center;
     background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.25s ease, background-color 0.25s ease;
+    transition: border-color 0.2s ease, background-color 0.15s ease;
 }
 
 .navbar.scrolled {
@@ -413,14 +388,14 @@ body.light-theme #sunIcon {
     width: 28px;
     height: 2px;
     background-color: var(--text-primary);
-    transition: all 0.3s ease;
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 /* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: min(310px, 85vw);
     height: 100vh;
     background: var(--card-bg);
@@ -429,12 +404,16 @@ body.light-theme #sunIcon {
     display: flex;
     flex-direction: column;
     padding: 5.5rem 2.5rem 2.5rem;
-    transition: right 0.38s cubic-bezier(0.77, 0, 0.175, 1);
+    transform: translate3d(100%, 0, 0);
+    visibility: hidden;
+    will-change: transform;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
     overflow-y: auto;
 }
 
 .sidebar.open {
-    right: 0;
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
 }
 
 .close-btn {
@@ -494,12 +473,10 @@ body.light-theme #sunIcon {
     position: fixed;
     inset: 0;
     background: var(--overlay-bg);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
     z-index: 1999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
 }
 
 .sidebar-overlay.open {
@@ -518,6 +495,7 @@ section {
     padding: 5.5rem 0;
     scroll-margin-top: 72px;
     position: relative;
+    contain: layout style;
 }
 
 main > section + section::before {
@@ -710,11 +688,10 @@ main > section + section::before {
 .intro-visual::before {
     content: "";
     position: absolute;
-    width: 340px;
-    height: 340px;
+    width: 380px;
+    height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
-    filter: blur(24px);
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 72%);
     z-index: 0;
     pointer-events: none;
 }
@@ -732,7 +709,7 @@ main > section + section::before {
     z-index: 1;
     cursor: pointer;
     transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-    transition: border-color 0.3s ease, transform 0.22s ease-out;
+    transition: border-color 0.25s ease, transform 0.2s ease-out;
 }
 
 .intro-image-container::after {
@@ -758,9 +735,7 @@ main > section + section::before {
     letter-spacing: 0.8px;
     text-transform: uppercase;
     color: #f5f5f5;
-    background: rgba(14, 14, 14, 0.72);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(14, 14, 14, 0.86);
     border: 1px solid rgba(255, 255, 255, 0.16);
     padding: 0.35rem 0.72rem;
     border-radius: 999px;
@@ -788,7 +763,7 @@ body.light-theme .mode-light-label {
     object-fit: cover;
     position: absolute;
     inset: 0;
-    transition: opacity 0.6s ease, transform 0.5s ease;
+    transition: opacity 0.4s ease, transform 0.35s ease;
 }
 
 .profile-glasses-img {
@@ -948,7 +923,8 @@ body.light-theme .profile-glasses-img {
     gap: 0.35rem;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.25s ease, transform 0.25s ease;
+    contain: layout style paint;
+    transition: border-color 0.22s ease, transform 0.22s ease;
 }
 
 .stat-item::after,
@@ -958,9 +934,9 @@ body.light-theme .profile-glasses-img {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), var(--accent-soft), transparent 65%);
+    background: radial-gradient(280px circle at 100% 0%, var(--accent-soft), transparent 70%);
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.22s ease;
     pointer-events: none;
     z-index: 0;
 }
@@ -1039,7 +1015,8 @@ body.light-theme .profile-glasses-img {
     gap: 1.75rem;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    contain: layout style paint;
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .project-card::before {
@@ -1052,14 +1029,13 @@ body.light-theme .profile-glasses-img {
     background: var(--accent-color);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.35s ease;
+    transition: transform 0.28s ease;
     z-index: 2;
 }
 
 .project-card:hover {
     transform: translateY(-4px);
     border-color: var(--border-hover);
-    box-shadow: 0 18px 36px var(--shadow-color);
 }
 
 .project-card:hover::before {
@@ -1403,7 +1379,8 @@ body.light-theme .profile-glasses-img {
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.25s ease, transform 0.25s ease;
+    contain: layout style paint;
+    transition: border-color 0.22s ease, transform 0.22s ease;
 }
 
 .skill-category:hover {
@@ -1510,7 +1487,7 @@ body.light-theme .profile-glasses-img {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .cert-filter-btn:hover {
@@ -1543,7 +1520,8 @@ body.light-theme .profile-glasses-img {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    contain: layout style paint;
+    transition: transform 0.25s ease, border-color 0.25s ease;
     position: relative;
 }
 
@@ -1554,7 +1532,6 @@ body.light-theme .profile-glasses-img {
 .certificate-card:hover {
     transform: translateY(-6px);
     border-color: var(--accent-color);
-    box-shadow: 0 20px 40px var(--shadow-color);
 }
 
 .cert-img-wrapper {
@@ -1577,7 +1554,7 @@ body.light-theme .profile-glasses-img {
     height: 100%;
     object-fit: cover;
     object-position: top center;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     display: block;
 }
 
@@ -1588,13 +1565,12 @@ body.light-theme .profile-glasses-img {
 .cert-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.68);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
 }
 
 .certificate-card:hover .cert-overlay,
@@ -1726,7 +1702,7 @@ body.light-theme .profile-glasses-img {
     gap: 6px;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
     border: 1px solid var(--border-color);
     background: transparent;
     color: var(--text-primary);
@@ -1765,7 +1741,7 @@ body.light-theme .profile-glasses-img {
     padding: 1.5rem;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.28s ease, visibility 0.28s ease;
+    transition: opacity 0.24s ease, visibility 0.24s ease;
 }
 
 .cert-modal.active {
@@ -1776,9 +1752,7 @@ body.light-theme .profile-glasses-img {
 .cert-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.86);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.88);
 }
 
 .cert-modal-dialog {
@@ -2008,7 +1982,7 @@ a.quick-value:hover {
     background: transparent;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .copy-btn:hover,
