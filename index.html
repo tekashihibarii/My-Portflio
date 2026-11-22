@@ -4,11 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrian Paul | Portfolio</title>
-    <meta name="description" content="Portfolio of Adrian Paul B. Lagura, BSIT Student & Developer">
+    <title>Adrian Paul Lagura | BSIT Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Adrian Paul B. Lagura — 4th-year BSIT student, web developer, and computer systems servicing practitioner preparing for OJT.">
+    <meta name="theme-color" content="#0a0a0a">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'">
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:title" content="Adrian Paul Lagura | BSIT Portfolio">
+    <meta property="og:description"
+        content="4th-year BSIT student building responsive web applications, sharpening computer systems servicing skills, and exploring AI &amp; cloud technologies.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/Profile.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Adrian Paul Lagura | BSIT Portfolio">
+    <meta name="twitter:description"
+        content="4th-year BSIT student preparing for OJT — web development, systems servicing, and 11 verified IT &amp; AI credentials.">
 
     <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96.png">
     <link rel="preload" href="assets/Profile.webp" as="image" type="image/webp" fetchpriority="high">
@@ -17,27 +30,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
 
+    <!-- Apply saved theme before first paint (CSP-safe external script) -->
+    <script src="theme-init.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Grain Overlay -->
-    <div class="grain-overlay"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Grain Overlay & Ambient Architectural Grid -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+    <div class="ambient-bg" aria-hidden="true"></div>
 
     <!-- Scroll Progress -->
-    <div class="scroll-progress-container">
+    <div class="scroll-progress-container" aria-hidden="true">
         <div class="scroll-progress-bar" id="scrollProgress"></div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <!-- Custom Cursor (activated on fine-pointer desktop after first mousemove) -->
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
 
-    <nav class="navbar">
-        <div class="logo">ADRIAN<span class="accent">.</span></div>
+    <nav class="navbar" aria-label="Primary navigation">
+        <a href="#intro" class="logo" aria-label="Adrian Paul Lagura Home">ADRIAN<span class="accent">.</span></a>
         <ul class="nav-links">
             <li><a href="#intro" class="active">INTRO</a></li>
             <li><a href="#about">ABOUT</a></li>
@@ -47,17 +65,18 @@
             <li><a href="#contact">CONTACT</a></li>
         </ul>
         <div class="nav-right">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"
+                aria-pressed="false">
                 <!-- Moon icon (SVG) -->
                 <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-moon">
+                    class="feather feather-moon" aria-hidden="true">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <!-- Sun icon (SVG) hidden by default -->
+                <!-- Sun icon (SVG) hidden by CSS in dark mode -->
                 <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-sun" style="display: none;">
+                    class="feather feather-sun" aria-hidden="true">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -71,7 +90,8 @@
             </button>
             <a href="reflection.html" class="resume-btn">REFLECTION</a>
             <a href="resume.html" class="resume-btn">RESUME</a>
-            <button class="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false">
+            <button class="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="mobileSidebar">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -80,7 +100,7 @@
     </nav>
 
     <!-- Sidebar for Mobile -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="mobileSidebar" aria-label="Mobile navigation">
         <button class="close-btn" type="button" aria-label="Close navigation menu">&times;</button>
         <ul class="sidebar-links">
             <li><a href="#intro" class="sidebar-link active">INTRO</a></li>
@@ -97,28 +117,50 @@
     </aside>
     <div class="sidebar-overlay"></div>
 
-    <main>
+    <main id="main-content">
         <!-- INTRO SECTION -->
-        <section id="intro" class="intro-section fade-in">
+        <section id="intro" class="intro-section">
             <div class="intro-content">
-                <div class="subtitle">ADRIAN PAUL LAGURA <span class="dash">-</span> FULL-STACK DEVELOPER</div>
-                <h1 class="main-title">Learning, Building, and Exploring Modern Technology.</h1>
-                <p class="description">Just a student who loves tech, learning how things work, and Building stuff as I
-                    go.
-                </p>
+                <div class="availability-pill">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    <span>Available for OJT &middot; 300 Hours</span>
+                </div>
+                <div class="subtitle">ADRIAN PAUL LAGURA <span class="dash">&mdash;</span> 4TH-YEAR BSIT &amp; WEB
+                    DEVELOPER</div>
+                <h1 class="main-title">Learning, <em class="title-italic">Building</em>, and Exploring Modern Technology.</h1>
+                <p class="description">Building responsive web applications, strengthening computer systems servicing
+                    skills, and exploring practical AI &amp; cloud technologies as I prepare for my IT internship.</p>
                 <div class="cta-buttons">
                     <a href="#work" class="primary-btn">VIEW WORK</a>
                     <a href="#contact" class="secondary-btn">GET IN TOUCH</a>
+                    <a href="resume.html" class="text-cta">VIEW RESUME &nearr;</a>
+                </div>
+                <div class="hero-proof" aria-label="Credential highlights">
+                    <span>11 Verified Credentials</span>
+                    <span class="proof-sep" aria-hidden="true">&middot;</span>
+                    <span>Cisco &times; DICT</span>
+                    <span class="proof-sep" aria-hidden="true">&middot;</span>
+                    <span>Map&uacute;a &times; CHED</span>
+                    <span class="proof-sep" aria-hidden="true">&middot;</span>
+                    <span>AI Dev PH</span>
                 </div>
             </div>
-            <div class="intro-image-container">
-                <img src="assets/Profile.webp" alt="ADRIAN PAUL LAGURA" class="profile-image" id="profileImage" width="900"
-                    height="900" fetchpriority="high" decoding="async">
-                <img src="assets/profile_glasses.webp" alt="ADRIAN PAUL LAGURA with glasses"
-                    class="profile-image profile-glasses-img" id="profileGlasses" width="900" height="900"
-                    decoding="async">
+            <div class="intro-visual">
+                <div class="intro-image-container" id="portraitToggle" role="button" tabindex="0"
+                    aria-label="Toggle light mode sunglasses portrait" title="Click to toggle dark/light mode">
+                    <img src="assets/Profile.webp" alt="Adrian Paul Lagura portrait" class="profile-image"
+                        id="profileImage" width="900" height="900" fetchpriority="high" decoding="async">
+                    <img src="assets/profile_glasses.webp" alt="Adrian Paul Lagura wearing sunglasses"
+                        class="profile-image profile-glasses-img" id="profileGlasses" width="900" height="900"
+                        decoding="async">
+                    <span class="portrait-mode-pill" aria-hidden="true">
+                        <span class="mode-dark-label">Dark Mode &middot; Click for Shades</span>
+                        <span class="mode-light-label">Shades On &middot; Click for Dark</span>
+                    </span>
+                </div>
+                <p class="portrait-caption">Guipos, Zamboanga del Sur &middot; Toggle light mode for the shades</p>
             </div>
-            <div class="scroll-indicator">
+            <div class="scroll-indicator" aria-hidden="true">
                 <span>SCROLL</span>
                 <div class="line"></div>
             </div>
@@ -131,11 +173,58 @@
                 <span class="dash">-</span>
                 <span class="section-name">ABOUT ME</span>
             </div>
-            <div class="about-content">
-                <h2 class="section-title">The story so far</h2>
+            <h2 class="section-title">The story so far</h2>
+            <div class="about-grid">
                 <div class="about-text">
-                    <p>I'm a dedicated 4th-year Bachelor of Science in Information Technology student at JH Cerilles State College (Mati, San Miguel, Zamboanga del Sur), currently preparing for my 300-hour On-the-Job Training (OJT). My journey started with a curiosity about how technology powers everyday life, evolving into a hands-on drive to build responsive software, master computer systems servicing, and explore modern cloud and AI technologies.</p>
-                    <p>I focus on building functional web applications while steadily sharpening my grasp of computer systems servicing, hardware troubleshooting, and AI-driven development. When I'm not studying or debugging code, I'm actively pursuing industry-standard credentials, experimenting with emerging AI frameworks, and preparing for future Microsoft Azure certification.</p>
+                    <p>I'm a dedicated 4th-year Bachelor of Science in Information Technology student at JH Cerilles
+                        State College (Mati, San Miguel, Zamboanga del Sur), currently preparing for my 300-hour
+                        On-the-Job Training (OJT). My journey started with a curiosity about how technology powers
+                        everyday life, evolving into a hands-on drive to build responsive software, master computer
+                        systems servicing, and explore modern cloud and AI technologies.</p>
+                    <p>I focus on building functional web applications while steadily sharpening my grasp of computer
+                        systems servicing, hardware troubleshooting, and AI-driven development. When I'm not studying or
+                        debugging code, I'm actively pursuing industry-standard credentials, experimenting with emerging
+                        AI frameworks, and preparing for future Microsoft Azure certification.</p>
+                </div>
+                <aside class="about-profile-card" aria-label="Quick profile details">
+                    <div class="profile-card-eyebrow">PROFILE SNAPSHOT</div>
+                    <dl class="quick-facts">
+                        <div class="quick-fact-row">
+                            <dt>Education</dt>
+                            <dd>BSIT (4th Year), JH Cerilles State College</dd>
+                        </div>
+                        <div class="quick-fact-row">
+                            <dt>Location</dt>
+                            <dd>Poblacion, Guipos, Zamboanga del Sur</dd>
+                        </div>
+                        <div class="quick-fact-row">
+                            <dt>OJT Readiness</dt>
+                            <dd>300 Training Hours &middot; Open to Apply</dd>
+                        </div>
+                        <div class="quick-fact-row">
+                            <dt>Focus Areas</dt>
+                            <dd>Web Dev, Systems Servicing, AI &amp; Cloud</dd>
+                        </div>
+                    </dl>
+                    <a href="resume.html" class="secondary-btn profile-card-btn">VIEW / DOWNLOAD RESUME &rarr;</a>
+                </aside>
+            </div>
+            <div class="stats-strip" aria-label="Portfolio highlights">
+                <div class="stat-item">
+                    <span class="stat-value">11</span>
+                    <span class="stat-label">Verified Credentials</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">300h</span>
+                    <span class="stat-label">OJT Readiness</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Reflection Papers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">AZ-900</span>
+                    <span class="stat-label">Next Cloud Goal</span>
                 </div>
             </div>
         </section>
@@ -148,50 +237,174 @@
                 <span class="section-name">SELECTED WORK</span>
             </div>
             <div class="work-header-flex">
-                <h2 class="section-title">Projects</h2>
-                <a href="#" class="view-all">FULL ARCHIVE &rarr;</a>
+                <h2 class="section-title">Projects &amp; Artifacts</h2>
+                <a href="https://github.com/tekashihibarii" target="_blank" rel="noopener noreferrer"
+                    class="view-all">GITHUB PROFILE &nearr;</a>
             </div>
 
-            <div class="horizontal-scroll-container" role="region" aria-label="Projects gallery" tabindex="0">
-                <div class="projects-wrapper">
-                    <!-- Project 1 -->
-                    <div class="project-card">
-                        <div class="project-img-placeholder coming-soon-overlay">
-                            <span>COMING SOON</span>
+            <div class="projects-grid">
+                <!-- Project 1: Featured -->
+                <article class="project-card project-card--featured">
+                    <div class="project-featured-layout">
+                        <div class="project-featured-content">
+                            <div class="project-card-top">
+                                <div class="project-header">
+                                    <span class="project-num">01</span>
+                                    <span class="project-badge">FEATURED BUILD</span>
+                                </div>
+                                <h3>Personal E-Portfolio &amp; Web Platform</h3>
+                                <p>Designed and built from scratch in vanilla HTML, CSS, and JavaScript. Features a
+                                    persistent dark/light theme engine with interactive sunglasses portrait swap, WebP
+                                    certificate optimization, strict Content Security Policy headers,
+                                    keyboard-accessible lightbox, and automated GitHub Pages deployment.</p>
+                            </div>
+                            <div class="project-card-bottom">
+                                <ul class="project-tags" aria-label="Technologies used">
+                                    <li>HTML5</li>
+                                    <li>CSS3</li>
+                                    <li>Vanilla JS</li>
+                                    <li>GitHub Actions</li>
+                                    <li>WCAG AA</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a href="https://github.com/tekashihibarii/My-Portflio" target="_blank"
+                                        rel="noopener noreferrer" class="project-link">SOURCE CODE &nearr;</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-info">
-                            <span class="project-num">01</span>
-                            <h3>Project Alpha</h3>
-                            <p>Coming Soon</p>
+                        <div class="project-visual-preview" aria-hidden="true">
+                            <div class="preview-chrome">
+                                <div class="preview-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="preview-url">tekashihibarii.github.io/My-Portflio</div>
+                                <span class="preview-theme-dot"></span>
+                            </div>
+                            <div class="preview-stage">
+                                <div class="preview-nav">
+                                    <span class="preview-brand">ADRIAN<span class="accent">.</span></span>
+                                    <div class="preview-nav-pills">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                                <div class="preview-hero">
+                                    <div class="preview-hero-copy">
+                                        <span class="preview-pill">OJT &middot; 300H</span>
+                                        <div class="preview-line preview-line--lg"></div>
+                                        <div class="preview-line preview-line--md"></div>
+                                        <div class="preview-cta-row">
+                                            <span class="preview-btn-solid"></span>
+                                            <span class="preview-btn-ghost"></span>
+                                        </div>
+                                    </div>
+                                    <div class="preview-avatar">
+                                        <span class="preview-avatar-glow"></span>
+                                        <span class="preview-avatar-shape"></span>
+                                    </div>
+                                </div>
+                                <div class="preview-metrics">
+                                    <span>WebP Assets</span>
+                                    <span>Strict CSP</span>
+                                    <span>WCAG AA</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Project 2 -->
-                    <div class="project-card">
-                        <div class="project-img-placeholder coming-soon-overlay">
-                            <span>COMING SOON</span>
-                        </div>
-                        <div class="project-info">
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <div class="project-header">
                             <span class="project-num">02</span>
-                            <h3>Project Beta</h3>
-                            <p>Coming Soon</p>
+                            <div class="project-badge-group">
+                                <svg class="project-glyph" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                </svg>
+                                <span class="project-badge">DOCUMENT PLATFORM</span>
+                            </div>
+                        </div>
+                        <h3>Course &amp; Seminar Reflection Hub</h3>
+                        <p>Interactive multi-paper academic reader housing reflections on AI Literacy, IT
+                            Professionalism, and Cloud Computing. Supports URL hash deep-linking, print media layout,
+                            and direct client-side A4 PDF generation.</p>
+                    </div>
+                    <div class="project-card-bottom">
+                        <ul class="project-tags" aria-label="Technologies used">
+                            <li>JavaScript</li>
+                            <li>html2pdf.js</li>
+                            <li>A4 Print CSS</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="reflection.html" class="project-link">OPEN REFLECTIONS &rarr;</a>
                         </div>
                     </div>
-                    <!-- Project 3 -->
-                    <div class="project-card">
-                        <div class="project-img-placeholder coming-soon-overlay">
-                            <span>COMING SOON</span>
-                        </div>
-                        <div class="project-info">
-                            <span class="project-num">03</span>
-                            <h3>Project Gamma</h3>
-                            <p>Coming Soon</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </article>
 
-            <div class="explore-projects">
-                <a href="#">EXPLORE ALL PROJECTS &rarr;</a>
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <div class="project-header">
+                            <span class="project-num">03</span>
+                            <div class="project-badge-group">
+                                <svg class="project-glyph" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                                    <line x1="7" y1="9" x2="17" y2="9"></line>
+                                    <line x1="7" y1="13" x2="13" y2="13"></line>
+                                </svg>
+                                <span class="project-badge">PRINT &amp; WEB CV</span>
+                            </div>
+                        </div>
+                        <h3>Interactive Print-Ready A4 Resume</h3>
+                        <p>Responsive web CV synchronized with verified coursework, technical competencies, and 11
+                            credentials. Tailored for OJT applications with clean A4 print stylesheets and one-click PDF
+                            download.</p>
+                    </div>
+                    <div class="project-card-bottom">
+                        <ul class="project-tags" aria-label="Technologies used">
+                            <li>Semantic HTML</li>
+                            <li>CSS Print Media</li>
+                            <li>PDF Export</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="resume.html" class="project-link">VIEW RESUME &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4: Upcoming -->
+                <article class="project-card project-card--upcoming">
+                    <div class="project-card-top">
+                        <div class="project-header">
+                            <span class="project-num">04</span>
+                            <div class="project-badge-group">
+                                <svg class="project-glyph" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                                </svg>
+                                <span class="project-badge project-badge--muted">IN PROGRESS</span>
+                            </div>
+                        </div>
+                        <h3>Capstone &amp; OJT Systems Builds</h3>
+                        <p>Currently preparing cloud-hosted web utilities and systems-servicing documentation as I step
+                            into my 300-hour OJT and study toward the Microsoft Azure Fundamentals (AZ-900) credential.
+                        </p>
+                    </div>
+                    <div class="project-card-bottom">
+                        <ul class="project-tags" aria-label="Focus areas">
+                            <li>Microsoft Azure</li>
+                            <li>Web Apps</li>
+                            <li>OJT Portfolio</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#contact" class="project-link">DISCUSS OJT COLLABORATION &rarr;</a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -202,34 +415,77 @@
                 <span class="dash">-</span>
                 <span class="section-name">EXPERTISE</span>
             </div>
-            <h2 class="section-title">Skills & Tools</h2>
+            <h2 class="section-title">Skills &amp; Tools</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Software & Web</h3>
+                    <div class="skill-card-head">
+                        <span class="skill-num">01</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Software &amp; Web</h3>
                     <ul>
                         <li>HTML5 / CSS3 / JavaScript</li>
                         <li>React / Modern Frontend</li>
-                        <li>Programming & Logic</li>
+                        <li>Programming &amp; Logic</li>
                         <li>RESTful APIs / Databases</li>
                     </ul>
+                    <div class="skill-tags">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>React</span>
+                        <span>SQL</span>
+                    </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Systems & Hardware</h3>
+                    <div class="skill-card-head">
+                        <span class="skill-num">02</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Systems &amp; Hardware</h3>
                     <ul>
                         <li>Computer System Servicing</li>
-                        <li>Hardware & Network Diagnostics</li>
+                        <li>Hardware &amp; Network Diagnostics</li>
                         <li>System Troubleshooting</li>
-                        <li>IT Operations & Support</li>
+                        <li>IT Operations &amp; Support</li>
                     </ul>
+                    <div class="skill-tags">
+                        <span>CSS Servicing</span>
+                        <span>Networking</span>
+                        <span>Diagnostics</span>
+                        <span>Support</span>
+                    </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Design, AI & Cloud</h3>
+                    <div class="skill-card-head">
+                        <span class="skill-num">03</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Design, AI &amp; Cloud</h3>
                     <ul>
-                        <li>Graphic Design & Digital Media</li>
+                        <li>Graphic Design &amp; Digital Media</li>
                         <li>AI-Driven Development (AI Dev PH)</li>
-                        <li>Cloud Computing & Azure Basics</li>
+                        <li>Cloud Computing &amp; Azure Basics</li>
                         <li>Git / GitHub / Version Control</li>
                     </ul>
+                    <div class="skill-tags">
+                        <span>GenAI</span>
+                        <span>Azure Basics</span>
+                        <span>Git / GitHub</span>
+                        <span>Graphic Design</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -242,305 +498,590 @@
                 <span class="section-name">CERTIFICATIONS</span>
             </div>
             <div class="certificates-header-flex">
-                <h2 class="section-title">Credentials & Badges</h2>
-                <span class="certificates-count">11 Verified</span>
+                <h2 class="section-title">Credentials &amp; Badges</h2>
+                <span class="certificates-count" id="certCount" aria-live="polite">11 Verified</span>
+            </div>
+
+            <div class="cert-filters" role="group" aria-label="Filter certificates by category">
+                <button type="button" class="cert-filter-btn active" data-filter="all" aria-pressed="true">
+                    All <span class="filter-count">11</span>
+                </button>
+                <button type="button" class="cert-filter-btn" data-filter="ai" aria-pressed="false">
+                    AI &amp; GenAI <span class="filter-count">7</span>
+                </button>
+                <button type="button" class="cert-filter-btn" data-filter="hardware-cloud" aria-pressed="false">
+                    Hardware &amp; Cloud <span class="filter-count">2</span>
+                </button>
+                <button type="button" class="cert-filter-btn" data-filter="professional" aria-pressed="false">
+                    Professional Skills <span class="filter-count">2</span>
+                </button>
             </div>
 
             <div class="certificates-grid">
-                <!-- Certificate 1: Core Generative AI Skills -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-core-generative-ai.png" data-title="Core Generative AI Skills" data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-core-generative-ai.png" alt="Core Generative AI Skills Certificate" class="cert-img" loading="lazy" width="1000" height="678">
-                        <div class="cert-overlay">
+                <!-- Certificate 1: Core Generative AI Skills (31 Oct 2026) -->
+                <article class="certificate-card" data-category="ai"
+                    data-cert="assets/certificates/cert-core-generative-ai.webp"
+                    data-pdf="assets/certificates/cert-core-generative-ai.pdf" data-title="Core Generative AI Skills"
+                    data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Core Generative AI Skills certificate">
+                        <img src="assets/certificates/cert-core-generative-ai.webp"
+                            alt="Core Generative AI Skills Certificate" class="cert-img" loading="lazy" decoding="async"
+                            width="1000" height="678">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
-                            <span class="cert-badge">Cisco × DICT</span>
+                            <span class="cert-badge">Cisco &times; DICT</span>
                             <span class="cert-date">31 Oct 2026</span>
                         </div>
                         <h3 class="cert-title">Core Generative AI Skills</h3>
-                        <p class="cert-id">Credential ID: <code>47b34dcc-49d7-478f-b614-ca7e92e0ce58</code></p>
+                        <p class="cert-id">Credential ID: <code>47b34dcc-49d7-478f-b614-ca7e92e0ce58</code> <button type="button" class="cred-copy-btn" data-copy-id="47b34dcc-49d7-478f-b614-ca7e92e0ce58" aria-label="Copy credential ID 47b34dcc-49d7-478f-b614-ca7e92e0ce58">Copy</button></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-core-generative-ai.pdf" download
+                                class="cert-btn cert-pdf-btn" aria-label="Download Core Generative AI Skills PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
-                <!-- Certificate 2: AI Power User Launchpad -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-ai-power-user.png" data-title="AI Power User Launchpad" data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-ai-power-user.png" alt="AI Power User Launchpad Certificate" class="cert-img" loading="lazy" width="1000" height="678">
-                        <div class="cert-overlay">
+                </article>
+
+                <!-- Certificate 2: AI Power User Launchpad (31 Oct 2026) -->
+                <article class="certificate-card" data-category="ai"
+                    data-cert="assets/certificates/cert-ai-power-user.webp"
+                    data-pdf="assets/certificates/cert-ai-power-user.pdf" data-title="AI Power User Launchpad"
+                    data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview AI Power User Launchpad certificate">
+                        <img src="assets/certificates/cert-ai-power-user.webp" alt="AI Power User Launchpad Certificate"
+                            class="cert-img" loading="lazy" decoding="async" width="1000" height="678">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
-                            <span class="cert-badge">Cisco × DICT</span>
+                            <span class="cert-badge">Cisco &times; DICT</span>
                             <span class="cert-date">31 Oct 2026</span>
                         </div>
                         <h3 class="cert-title">AI Power User Launchpad</h3>
-                        <p class="cert-id">Credential ID: <code>11830fa6-325f-4e3a-9657-fc233114ddb9</code></p>
+                        <p class="cert-id">Credential ID: <code>11830fa6-325f-4e3a-9657-fc233114ddb9</code> <button type="button" class="cred-copy-btn" data-copy-id="11830fa6-325f-4e3a-9657-fc233114ddb9" aria-label="Copy credential ID 11830fa6-325f-4e3a-9657-fc233114ddb9">Copy</button></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-ai-power-user.pdf" download class="cert-btn cert-pdf-btn"
+                                aria-label="Download AI Power User Launchpad PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Certificate 3: Optimizing Generative AI -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-optimizing-generative-ai.png" data-title="Optimizing Generative AI" data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-optimizing-generative-ai.png" alt="Optimizing Generative AI Certificate" class="cert-img" loading="lazy" width="1000" height="678">
-                        <div class="cert-overlay">
+                <!-- Certificate 3: Optimizing Generative AI (31 Oct 2026) -->
+                <article class="certificate-card" data-category="ai"
+                    data-cert="assets/certificates/cert-optimizing-generative-ai.webp"
+                    data-pdf="assets/certificates/cert-optimizing-generative-ai.pdf"
+                    data-title="Optimizing Generative AI"
+                    data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Optimizing Generative AI certificate">
+                        <img src="assets/certificates/cert-optimizing-generative-ai.webp"
+                            alt="Optimizing Generative AI Certificate" class="cert-img" loading="lazy" decoding="async"
+                            width="1000" height="678">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
-                            <span class="cert-badge">Cisco × DICT</span>
+                            <span class="cert-badge">Cisco &times; DICT</span>
                             <span class="cert-date">31 Oct 2026</span>
                         </div>
                         <h3 class="cert-title">Optimizing Generative AI</h3>
-                        <p class="cert-id">Credential ID: <code>9bb24ea3-f1bf-458e-9e56-a7b87ba21827</code></p>
+                        <p class="cert-id">Credential ID: <code>9bb24ea3-f1bf-458e-9e56-a7b87ba21827</code> <button type="button" class="cred-copy-btn" data-copy-id="9bb24ea3-f1bf-458e-9e56-a7b87ba21827" aria-label="Copy credential ID 9bb24ea3-f1bf-458e-9e56-a7b87ba21827">Copy</button></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-optimizing-generative-ai.pdf" download
+                                class="cert-btn cert-pdf-btn" aria-label="Download Optimizing Generative AI PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Certificate 4: Find Insights with AI -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-find-insights-ai.png" data-title="Find Insights with AI" data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-find-insights-ai.png" alt="Find Insights with AI Certificate" class="cert-img" loading="lazy" width="1000" height="678">
-                        <div class="cert-overlay">
+                <!-- Certificate 4: Find Insights with AI (31 Oct 2026) -->
+                <article class="certificate-card" data-category="ai"
+                    data-cert="assets/certificates/cert-find-insights-ai.webp"
+                    data-pdf="assets/certificates/cert-find-insights-ai.pdf" data-title="Find Insights with AI"
+                    data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Find Insights with AI certificate">
+                        <img src="assets/certificates/cert-find-insights-ai.webp"
+                            alt="Find Insights with AI Certificate" class="cert-img" loading="lazy" decoding="async"
+                            width="1000" height="678">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
-                            <span class="cert-badge">Cisco × DICT</span>
+                            <span class="cert-badge">Cisco &times; DICT</span>
                             <span class="cert-date">31 Oct 2026</span>
                         </div>
                         <h3 class="cert-title">Find Insights with AI</h3>
-                        <p class="cert-id">Credential ID: <code>41f575a0-ca37-47c5-a3d3-56dfcf5de8f5</code></p>
+                        <p class="cert-id">Credential ID: <code>41f575a0-ca37-47c5-a3d3-56dfcf5de8f5</code> <button type="button" class="cred-copy-btn" data-copy-id="41f575a0-ca37-47c5-a3d3-56dfcf5de8f5" aria-label="Copy credential ID 41f575a0-ca37-47c5-a3d3-56dfcf5de8f5">Copy</button></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-find-insights-ai.pdf" download
+                                class="cert-btn cert-pdf-btn" aria-label="Download Find Insights with AI PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Certificate 5: Engaging Stakeholders for Success -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-engaging-stakeholders.png" data-title="Engaging Stakeholders for Success" data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-engaging-stakeholders.png" alt="Engaging Stakeholders for Success Certificate" class="cert-img" loading="lazy" width="1000" height="678">
-                        <div class="cert-overlay">
+                <!-- Certificate 5: Engaging Stakeholders for Success (31 Oct 2026) -->
+                <article class="certificate-card" data-category="professional"
+                    data-cert="assets/certificates/cert-engaging-stakeholders.webp"
+                    data-pdf="assets/certificates/cert-engaging-stakeholders.pdf"
+                    data-title="Engaging Stakeholders for Success"
+                    data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Engaging Stakeholders for Success certificate">
+                        <img src="assets/certificates/cert-engaging-stakeholders.webp"
+                            alt="Engaging Stakeholders for Success Certificate" class="cert-img" loading="lazy"
+                            decoding="async" width="1000" height="678">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
-                            <span class="cert-badge">Cisco × DICT</span>
+                            <span class="cert-badge">Cisco &times; DICT</span>
                             <span class="cert-date">31 Oct 2026</span>
                         </div>
                         <h3 class="cert-title">Engaging Stakeholders for Success</h3>
-                        <p class="cert-id">Credential ID: <code>74c7d6ac-e2e0-438a-81b5-bd4e9ba8090c</code></p>
+                        <p class="cert-id">Credential ID: <code>74c7d6ac-e2e0-438a-81b5-bd4e9ba8090c</code> <button type="button" class="cred-copy-btn" data-copy-id="74c7d6ac-e2e0-438a-81b5-bd4e9ba8090c" aria-label="Copy credential ID 74c7d6ac-e2e0-438a-81b5-bd4e9ba8090c">Copy</button></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-engaging-stakeholders.pdf" download
+                                class="cert-btn cert-pdf-btn"
+                                aria-label="Download Engaging Stakeholders for Success PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
-                <!-- Certificate 6: AI Literacy -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-ai-literacy.webp" data-title="Introduction to AI Literacy and Responsible Use" data-issuer="Mapúa University × CHED / ACHIEVE">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-ai-literacy.webp" alt="Introduction to AI Literacy and Responsible Use Certificate" class="cert-img" loading="lazy" width="1000" height="708">
-                        <div class="cert-overlay">
-                            <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                View Certificate
-                            </span>
-                        </div>
-                    </div>
-                    <div class="cert-content">
-                        <div class="cert-meta">
-                            <span class="cert-badge">Mapúa × CHED</span>
-                            <span class="cert-date">14 Sep 2026</span>
-                        </div>
-                        <h3 class="cert-title">Introduction to AI Literacy and Responsible Use</h3>
-                        <p class="cert-id">Credential ID: <code>Y4R3RMLDG6N8B</code></p>
-                        <div class="cert-actions">
-                            <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                </article>
 
-                <!-- Certificate 7: Modern AI -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-modern-ai.webp" data-title="Introduction to Modern AI" data-issuer="Cisco Networking Academy">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-modern-ai.webp" alt="Introduction to Modern AI Certificate" class="cert-img" loading="lazy" width="1000" height="677">
-                        <div class="cert-overlay">
+                <!-- Certificate 6: Fundamentals of AI-Driven Development (19 Oct 2026) -->
+                <article class="certificate-card" data-category="ai"
+                    data-cert="assets/certificates/cert-ai-driven-dev.webp"
+                    data-pdf="assets/certificates/cert-ai-driven-dev.pdf"
+                    data-title="Fundamentals of AI-Driven Development"
+                    data-issuer="AI Dev PH Discord Community (Mar Wie Ang)" data-date="19 Oct 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Fundamentals of AI-Driven Development certificate">
+                        <img src="assets/certificates/cert-ai-driven-dev.webp"
+                            alt="Fundamentals of AI-Driven Development Certificate" class="cert-img" loading="lazy"
+                            decoding="async" width="1000" height="697">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
-                    <div class="cert-content">
-                        <div class="cert-meta">
-                            <span class="cert-badge">Cisco Academy</span>
-                            <span class="cert-date">22 Sep 2026</span>
-                        </div>
-                        <h3 class="cert-title">Introduction to Modern AI</h3>
-                        <p class="cert-id">Credential ID: <code>17517023-752b-40c6</code></p>
-                        <div class="cert-actions">
-                            <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Certificate 8: Computer Hardware Basics -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-hardware-basics.webp" data-title="Computer Hardware Basics" data-issuer="Cisco Networking Academy × DICT-ITU DTC">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-hardware-basics.webp" alt="Computer Hardware Basics Certificate" class="cert-img" loading="lazy" width="1000" height="677">
-                        <div class="cert-overlay">
-                            <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                View Certificate
-                            </span>
-                        </div>
-                    </div>
-                    <div class="cert-content">
-                        <div class="cert-meta">
-                            <span class="cert-badge">Cisco × DICT</span>
-                            <span class="cert-date">14 Sep 2026</span>
-                        </div>
-                        <h3 class="cert-title">Computer Hardware Basics</h3>
-                        <p class="cert-id">Credential ID: <code>5ea20721-a0db-41a4</code></p>
-                        <div class="cert-actions">
-                            <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Certificate 9: Fundamentals of AI-Driven Development -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-ai-driven-dev.webp" data-title="Fundamentals of AI-Driven Development" data-issuer="AI Dev PH Discord Community (Mar Wie Ang)">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-ai-driven-dev.webp" alt="Fundamentals of AI-Driven Development Certificate" class="cert-img" loading="lazy" width="1000" height="697">
-                        <div class="cert-overlay">
-                            <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                View Certificate
-                            </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
                             <span class="cert-badge">AI Dev PH</span>
                             <span class="cert-date">19 Oct 2026</span>
                         </div>
                         <h3 class="cert-title">Fundamentals of AI-Driven Development</h3>
-                        <p class="cert-id">Credential ID: <code>MWA-S8PC-CYV9</code></p>
+                        <p class="cert-id">Credential ID: <code>MWA-S8PC-CYV9</code> <button type="button" class="cred-copy-btn" data-copy-id="MWA-S8PC-CYV9" aria-label="Copy credential ID MWA-S8PC-CYV9">Copy</button></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-ai-driven-dev.pdf" download class="cert-btn cert-pdf-btn"
+                                aria-label="Download Fundamentals of AI-Driven Development PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Certificate 10: Building Your IT Career - Cloud Computing -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-cloud-computing.webp" data-title="Building Your IT Career: Cloud Computing &amp; Microsoft Technologies" data-issuer="J.H. Cerilles State College — School of Computing Studies (Speaker: Mizel Dane G. Narag)">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-cloud-computing.webp" alt="Building Your IT Career Cloud Computing Certificate" class="cert-img" loading="lazy" width="1000" height="698">
-                        <div class="cert-overlay">
+                <!-- Certificate 7: Building Your IT Career - Cloud Computing (13 Oct 2026) -->
+                <article class="certificate-card" data-category="hardware-cloud"
+                    data-cert="assets/certificates/cert-cloud-computing.webp"
+                    data-pdf="assets/certificates/cert-cloud-computing.pdf"
+                    data-title="Building Your IT Career: Cloud Computing &amp; Microsoft Technologies"
+                    data-issuer="J.H. Cerilles State College — School of Computing Studies (Speaker: Mizel Dane G. Narag)"
+                    data-date="13 Oct 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Building Your IT Career: Cloud Computing certificate">
+                        <img src="assets/certificates/cert-cloud-computing.webp"
+                            alt="Building Your IT Career Cloud Computing Certificate" class="cert-img" loading="lazy"
+                            decoding="async" width="1000" height="698">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
-                            <span class="cert-badge">JHCSC × Cloud</span>
+                            <span class="cert-badge">JHCSC &times; Cloud</span>
                             <span class="cert-date">13 Oct 2026</span>
                         </div>
                         <h3 class="cert-title">Building Your IT Career: Cloud Computing</h3>
                         <p class="cert-id">Speaker: <code>Mizel Dane G. Narag</code></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-cloud-computing.pdf" download
+                                class="cert-btn cert-pdf-btn"
+                                aria-label="Download Cloud Computing seminar certificate PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Certificate 11: Soft Skills Seminar -->
-                <div class="certificate-card" data-cert="assets/certificates/cert-soft-skills-seminar.webp" data-title="Soft Skills Seminar" data-issuer="J.H. Cerilles State College — School of Computing Studies">
-                    <div class="cert-img-wrapper">
-                        <img src="assets/certificates/cert-soft-skills-seminar.webp" alt="Soft Skills Seminar Certificate" class="cert-img" loading="lazy" width="1250" height="937">
-                        <div class="cert-overlay">
+                <!-- Certificate 8: Soft Skills Seminar (25 Sep 2026) -->
+                <article class="certificate-card" data-category="professional"
+                    data-cert="assets/certificates/cert-soft-skills-seminar.webp"
+                    data-pdf="assets/certificates/cert-soft-skills-seminar.pdf" data-title="Soft Skills Seminar"
+                    data-issuer="J.H. Cerilles State College — School of Computing Studies" data-date="25 Sep 2026">
+                    <button type="button" class="cert-img-wrapper" aria-label="Preview Soft Skills Seminar certificate">
+                        <img src="assets/certificates/cert-soft-skills-seminar.webp"
+                            alt="Soft Skills Seminar Certificate" class="cert-img" loading="lazy" decoding="async"
+                            width="1250" height="937">
+                        <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                                 View Certificate
                             </span>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                     <div class="cert-content">
                         <div class="cert-meta">
-                            <span class="cert-badge">JHCSC × SCS</span>
+                            <span class="cert-badge">JHCSC &times; SCS</span>
                             <span class="cert-date">25 Sep 2026</span>
                         </div>
                         <h3 class="cert-title">Soft Skills Seminar</h3>
                         <p class="cert-id">Venue: <code>JHCSC Library AVR</code></p>
                         <div class="cert-actions">
                             <button class="cert-btn view-cert-btn" type="button">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                VIEW CERTIFICATE
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
                             </button>
+                            <a href="assets/certificates/cert-soft-skills-seminar.pdf" download
+                                class="cert-btn cert-pdf-btn" aria-label="Download Soft Skills Seminar PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
+
+                <!-- Certificate 9: Introduction to Modern AI (22 Sep 2026) -->
+                <article class="certificate-card" data-category="ai" data-cert="assets/certificates/cert-modern-ai.webp"
+                    data-pdf="assets/certificates/cert-modern-ai.pdf" data-title="Introduction to Modern AI"
+                    data-issuer="Cisco Networking Academy" data-date="22 Sep 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Introduction to Modern AI certificate">
+                        <img src="assets/certificates/cert-modern-ai.webp" alt="Introduction to Modern AI Certificate"
+                            class="cert-img" loading="lazy" decoding="async" width="1000" height="677">
+                        <span class="cert-overlay" aria-hidden="true">
+                            <span class="view-btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                View Certificate
+                            </span>
+                        </span>
+                    </button>
+                    <div class="cert-content">
+                        <div class="cert-meta">
+                            <span class="cert-badge">Cisco Academy</span>
+                            <span class="cert-date">22 Sep 2026</span>
+                        </div>
+                        <h3 class="cert-title">Introduction to Modern AI</h3>
+                        <p class="cert-id">Credential ID: <code>17517023-752b-40c6</code> <button type="button" class="cred-copy-btn" data-copy-id="17517023-752b-40c6" aria-label="Copy credential ID 17517023-752b-40c6">Copy</button></p>
+                        <div class="cert-actions">
+                            <button class="cert-btn view-cert-btn" type="button">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
+                            </button>
+                            <a href="assets/certificates/cert-modern-ai.pdf" download class="cert-btn cert-pdf-btn"
+                                aria-label="Download Introduction to Modern AI PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Certificate 10: AI Literacy (14 Sep 2026) -->
+                <article class="certificate-card" data-category="ai"
+                    data-cert="assets/certificates/cert-ai-literacy.webp"
+                    data-pdf="assets/certificates/cert-ai-literacy.pdf"
+                    data-title="Introduction to AI Literacy and Responsible Use"
+                    data-issuer="Map&uacute;a University &times; CHED / ACHIEVE" data-date="14 Sep 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Introduction to AI Literacy and Responsible Use certificate">
+                        <img src="assets/certificates/cert-ai-literacy.webp"
+                            alt="Introduction to AI Literacy and Responsible Use Certificate" class="cert-img"
+                            loading="lazy" decoding="async" width="1000" height="708">
+                        <span class="cert-overlay" aria-hidden="true">
+                            <span class="view-btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                View Certificate
+                            </span>
+                        </span>
+                    </button>
+                    <div class="cert-content">
+                        <div class="cert-meta">
+                            <span class="cert-badge">Map&uacute;a &times; CHED</span>
+                            <span class="cert-date">14 Sep 2026</span>
+                        </div>
+                        <h3 class="cert-title">Introduction to AI Literacy and Responsible Use</h3>
+                        <p class="cert-id">Credential ID: <code>Y4R3RMLDG6N8B</code> <button type="button" class="cred-copy-btn" data-copy-id="Y4R3RMLDG6N8B" aria-label="Copy credential ID Y4R3RMLDG6N8B">Copy</button></p>
+                        <div class="cert-actions">
+                            <button class="cert-btn view-cert-btn" type="button">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
+                            </button>
+                            <a href="assets/certificates/cert-ai-literacy.pdf" download class="cert-btn cert-pdf-btn"
+                                aria-label="Download AI Literacy and Responsible Use PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Certificate 11: Computer Hardware Basics (14 Sep 2026) -->
+                <article class="certificate-card" data-category="hardware-cloud"
+                    data-cert="assets/certificates/cert-hardware-basics.webp"
+                    data-pdf="assets/certificates/cert-hardware-basics.pdf" data-title="Computer Hardware Basics"
+                    data-issuer="Cisco Networking Academy &times; DICT-ITU DTC" data-date="14 Sep 2026">
+                    <button type="button" class="cert-img-wrapper"
+                        aria-label="Preview Computer Hardware Basics certificate">
+                        <img src="assets/certificates/cert-hardware-basics.webp"
+                            alt="Computer Hardware Basics Certificate" class="cert-img" loading="lazy" decoding="async"
+                            width="1000" height="677">
+                        <span class="cert-overlay" aria-hidden="true">
+                            <span class="view-btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                View Certificate
+                            </span>
+                        </span>
+                    </button>
+                    <div class="cert-content">
+                        <div class="cert-meta">
+                            <span class="cert-badge">Cisco &times; DICT</span>
+                            <span class="cert-date">14 Sep 2026</span>
+                        </div>
+                        <h3 class="cert-title">Computer Hardware Basics</h3>
+                        <p class="cert-id">Credential ID: <code>5ea20721-a0db-41a4</code> <button type="button" class="cred-copy-btn" data-copy-id="5ea20721-a0db-41a4" aria-label="Copy credential ID 5ea20721-a0db-41a4">Copy</button></p>
+                        <div class="cert-actions">
+                            <button class="cert-btn view-cert-btn" type="button">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                VIEW
+                            </button>
+                            <a href="assets/certificates/cert-hardware-basics.pdf" download
+                                class="cert-btn cert-pdf-btn" aria-label="Download Computer Hardware Basics PDF">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                PDF
+                            </a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -553,45 +1094,83 @@
             </div>
             <div class="contact-content">
                 <h2 class="section-title">Let's work together.</h2>
-                <p class="contact-desc">Feel free to reach out if you're looking for an IT intern / trainee, have an opportunity, or simply want to connect.<br>
-                <span style="display: inline-block; margin-top: 8px;">
-                    <strong>Email:</strong> <a href="mailto:adrianlagura04@gmail.com" style="color: var(--accent-color, #c5f82a); text-decoration: none;">adrianlagura04@gmail.com</a> &nbsp;&bull;&nbsp;
-                    <strong>Phone:</strong> 0962 303 7994 &nbsp;&bull;&nbsp;
-                    <strong>Location:</strong> Poblacion, Guipos, Zamboanga del Sur
-                </span>
-                </p>
+                <p class="contact-desc">Feel free to reach out if you're looking for a motivated IT intern / OJT
+                    trainee, have a project collaboration in mind, or simply want to connect.</p>
+
+                <div class="contact-quick-grid">
+                    <div class="contact-quick-card">
+                        <span class="quick-label">EMAIL</span>
+                        <a href="mailto:adrianlagura04@gmail.com" class="quick-value">adrianlagura04@gmail.com</a>
+                        <button type="button" class="copy-btn" id="copyEmailBtn"
+                            data-copy="adrianlagura04@gmail.com">Copy Email</button>
+                    </div>
+                    <div class="contact-quick-card">
+                        <span class="quick-label">PHONE</span>
+                        <a href="tel:+639623037994" class="quick-value">0962 303 7994</a>
+                        <span class="quick-sub">Call or SMS</span>
+                    </div>
+                    <div class="contact-quick-card">
+                        <span class="quick-label">LOCATION</span>
+                        <span class="quick-value">Poblacion, Guipos</span>
+                        <span class="quick-sub">Zamboanga del Sur &middot; On-Site / Remote</span>
+                    </div>
+                </div>
 
                 <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" required placeholder="John Doe">
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" autocomplete="name" required
+                                placeholder="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required
+                                placeholder="jane@example.com">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required placeholder="john@example.com">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="OJT Inquiry / Collaboration">
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" rows="4" required placeholder="Your message here..."></textarea>
+                        <textarea id="message" name="message" rows="4" required
+                            placeholder="Tell me about the OJT role or project..."></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                    <button type="submit" class="submit-btn">COMPOSE EMAIL</button>
+                    <div id="formStatus" class="form-status" role="status" aria-live="polite" hidden></div>
                 </form>
             </div>
         </section>
     </main>
 
     <!-- Certificate Lightbox Modal -->
-    <div id="certModal" class="cert-modal" aria-hidden="true" role="dialog" aria-label="Certificate preview">
+    <div id="certModal" class="cert-modal" aria-hidden="true" role="dialog" aria-modal="true"
+        aria-labelledby="certModalTitle">
         <div class="cert-modal-backdrop"></div>
         <div class="cert-modal-dialog">
-            <button class="cert-modal-close" id="certModalClose" aria-label="Close modal">&times;</button>
+            <button class="cert-modal-close" id="certModalClose" type="button"
+                aria-label="Close certificate preview">&times;</button>
             <div class="cert-modal-body">
-                <img id="certModalImg" src="" alt="Certificate Preview" class="cert-modal-image" width="1000" height="692">
+                <button class="cert-modal-nav cert-modal-prev" id="certModalPrev" type="button"
+                    aria-label="Previous certificate">&#8249;</button>
+                <img id="certModalImg"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    alt="Certificate Preview" class="cert-modal-image" width="1000" height="692">
+                <button class="cert-modal-nav cert-modal-next" id="certModalNext" type="button"
+                    aria-label="Next certificate">&#8250;</button>
             </div>
             <div class="cert-modal-footer">
                 <div class="cert-modal-info">
                     <h3 id="certModalTitle">Certificate Title</h3>
                     <p id="certModalIssuer">Issuer</p>
+                </div>
+                <div class="cert-modal-actions">
+                    <span class="cert-modal-hint" aria-hidden="true">&larr; / &rarr; Navigate &middot; Esc Close</span>
+                    <span id="certModalCounter" class="cert-modal-counter">1 / 11</span>
+                    <a id="certModalDownload" href="#certModalDownload" download
+                        class="primary-btn cert-modal-dl">Download PDF</a>
                 </div>
             </div>
         </div>
@@ -599,11 +1178,13 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">ADRIAN<span class="accent">.</span></div>
+            <a href="#intro" class="footer-logo">ADRIAN<span class="accent">.</span></a>
             <div class="social-links">
-                <a href="#">GitHub</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Twitter</a>
+                <a href="https://github.com/tekashihibarii" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="resume.html">Resume</a>
+                <a href="reflection.html">Reflections</a>
+                <a href="mailto:adrianlagura04@gmail.com">Email</a>
+                <a href="#intro">Back to Top &uarr;</a>
             </div>
             <div class="copyright">
                 &copy; 2026 ADRIAN PAUL LAGURA. All rights reserved.

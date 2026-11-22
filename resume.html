@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adrian Paul B. Lagura | Resume</title>
   <meta name="description" content="Resume of Adrian Paul B. Lagura, 4th-year BSIT Student seeking OJT position">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96.png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +29,12 @@
       line-height: 1.5;
     }
 
+    :focus-visible {
+      outline: 2px solid #c5f82a;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
     /* Fixed Top Toolbar */
     .toolbar {
       position: fixed;
@@ -35,15 +42,28 @@
       left: 0;
       right: 0;
       min-height: 56px;
-      background: #1e1e1e;
+      background: rgba(14, 14, 14, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #262626;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 8px 1.5rem;
       z-index: 100;
-      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
       gap: 1rem;
       flex-wrap: wrap;
+    }
+
+    .toolbar-brand {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: #f2f2f2;
+      padding-right: 10px;
+      border-right: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .toolbar-left,
@@ -51,6 +71,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .back-link {
@@ -68,6 +89,24 @@
 
     .back-link:hover {
       color: #c5f82a;
+    }
+
+    .toolbar-nav-link {
+      color: #cfcfcf;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      transition: color 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .toolbar-nav-link:hover {
+      color: #c5f82a;
+      background: rgba(255, 255, 255, 0.14);
     }
 
     .doc-badge {
@@ -131,6 +170,7 @@
       padding-top: 86px;
       padding-bottom: 60px;
       min-height: 100vh;
+      background: radial-gradient(circle at 50% 0%, #f5f2ec 0%, #eae5dc 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -175,7 +215,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
 
     .resume-contact a {
@@ -247,7 +287,7 @@
 
     .skills-block strong {
       display: inline-block;
-      width: 150px;
+      width: 155px;
       color: #111;
     }
 
@@ -258,7 +298,9 @@
     .cert-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 6px;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 7px;
     }
 
     .cert-item-title {
@@ -269,6 +311,11 @@
     .cert-item-issuer {
       color: #555;
       font-size: 9pt;
+    }
+
+    .cert-item-meta {
+      text-align: right;
+      flex-shrink: 0;
     }
 
     .cert-item-id {
@@ -286,10 +333,15 @@
     }
 
     ul.clean-list li {
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
     @media print {
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
       .toolbar {
         display: none !important;
       }
@@ -300,17 +352,22 @@
 
       .page-shadow {
         padding: 0;
+        background: #fff;
       }
 
       .resume-sheet {
         box-shadow: none;
         margin: 0;
         width: 100%;
-        padding: 15mm 15mm;
+        padding: 0;
       }
     }
 
     @media (max-width: 900px) {
+      .page-shadow {
+        padding-top: 108px;
+      }
+
       .resume-sheet {
         width: 100%;
         margin: 0;
@@ -323,8 +380,14 @@
         margin-bottom: 2px;
       }
 
-      .entry-header {
+      .entry-header,
+      .cert-item {
         flex-direction: column;
+        gap: 4px;
+      }
+
+      .cert-item-meta {
+        text-align: left;
       }
     }
   </style>
@@ -333,19 +396,23 @@
 <body>
   <header class="toolbar">
     <div class="toolbar-left">
+      <span class="toolbar-brand">ADRIAN<span style="color: #c5f82a;">.</span></span>
       <a href="index.html" class="back-link" title="Return to Adrian's Portfolio">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          aria-hidden="true">
           <line x1="19" y1="12" x2="5" y2="12" />
           <polyline points="12 19 5 12 12 5" />
         </svg>
         Back to Portfolio
       </a>
+      <a href="reflection.html" class="toolbar-nav-link">Reflections</a>
       <span class="doc-badge">CV / RESUME</span>
     </div>
 
     <div class="toolbar-right">
-      <button class="print-btn" onclick="window.print()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="print-btn" type="button" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          aria-hidden="true">
           <polyline points="6 9 6 2 18 2 18 9"></polyline>
           <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
           <rect x="6" y="14" width="12" height="8"></rect>
@@ -353,7 +420,8 @@
         Print
       </button>
       <a href="assets/adrian-lagura-resume.pdf" download="Adrian_Paul_Lagura_Resume.pdf" class="dl-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          aria-hidden="true">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
           <polyline points="7 10 12 15 17 10" />
           <line x1="12" y1="15" x2="12" y2="3" />
@@ -374,6 +442,8 @@
           <span><a href="tel:09623037994">0962 303 7994</a></span>
           <span>&bull;</span>
           <span><a href="mailto:adrianlagura04@gmail.com">adrianlagura04@gmail.com</a></span>
+          <span>&bull;</span>
+          <span><a href="https://github.com/tekashihibarii" target="_blank" rel="noopener noreferrer">github.com/tekashihibarii</a></span>
         </div>
       </header>
 
@@ -394,13 +464,13 @@
         <div class="entry">
           <div class="entry-header">
             <span class="entry-title">Bachelor of Science in Information Technology (4th Year)</span>
-            <span class="entry-date">Expected 2026–2027</span>
+            <span class="entry-date">Expected 2026&ndash;2027</span>
           </div>
-          <div class="entry-sub">JH Cerilles State College — Mati, San Miguel, Zamboanga del Sur</div>
+          <div class="entry-sub">JH Cerilles State College &mdash; Mati, San Miguel, Zamboanga del Sur</div>
         </div>
         <div class="entry" style="margin-top: 8px;">
           <div class="entry-header">
-            <span class="entry-title">Senior High School – Information and Communications Technology (ICT) Strand</span>
+            <span class="entry-title">Senior High School &ndash; Information and Communications Technology (ICT) Strand</span>
           </div>
         </div>
       </section>
@@ -413,7 +483,7 @@
             <div class="cert-item-title">Core Generative AI Skills</div>
             <div class="cert-item-issuer">DICT-ITU DTC Initiative through Cisco Networking Academy (Instructor: Jayson Ryan Cunanan)</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">31 Oct 2026</div>
             <span class="cert-item-id">ID: 47b34dcc-49d7-478f-b614-ca7e92e0ce58</span>
           </div>
@@ -424,84 +494,84 @@
             <div class="cert-item-title">AI Power User Launchpad</div>
             <div class="cert-item-issuer">DICT-ITU DTC Initiative through Cisco Networking Academy (Instructor: Jayson Ryan Cunanan)</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">31 Oct 2026</div>
             <span class="cert-item-id">ID: 11830fa6-325f-4e3a-9657-fc233114ddb9</span>
           </div>
         </div>
 
-        <div class="cert-item" style="margin-top: 6px;">
+        <div class="cert-item">
           <div>
             <div class="cert-item-title">Optimizing Generative AI</div>
             <div class="cert-item-issuer">DICT-ITU DTC Initiative through Cisco Networking Academy (Instructor: Jayson Ryan Cunanan)</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">31 Oct 2026</div>
             <span class="cert-item-id">ID: 9bb24ea3-f1bf-458e-9e56-a7b87ba21827</span>
           </div>
         </div>
 
-        <div class="cert-item" style="margin-top: 6px;">
+        <div class="cert-item">
           <div>
             <div class="cert-item-title">Find Insights with AI</div>
             <div class="cert-item-issuer">DICT-ITU DTC Initiative through Cisco Networking Academy (Instructor: Jayson Ryan Cunanan)</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">31 Oct 2026</div>
             <span class="cert-item-id">ID: 41f575a0-ca37-47c5-a3d3-56dfcf5de8f5</span>
           </div>
         </div>
 
-        <div class="cert-item" style="margin-top: 6px;">
+        <div class="cert-item">
           <div>
             <div class="cert-item-title">Engaging Stakeholders for Success</div>
             <div class="cert-item-issuer">DICT-ITU DTC Initiative through Cisco Networking Academy (Instructor: Jayson Ryan Cunanan)</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">31 Oct 2026</div>
             <span class="cert-item-id">ID: 74c7d6ac-e2e0-438a-81b5-bd4e9ba8090c</span>
           </div>
         </div>
 
-        <div class="cert-item" style="margin-top: 6px;">
+        <div class="cert-item">
           <div>
             <div class="cert-item-title">Fundamentals of AI-Driven Development</div>
             <div class="cert-item-issuer">AI Dev PH Discord Community (Instructor: Mar Wie Ang)</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">19 Oct 2026</div>
             <span class="cert-item-id">ID: MWA-S8PC-CYV9</span>
           </div>
         </div>
 
-        <div class="cert-item" style="margin-top: 6px;">
+        <div class="cert-item">
           <div>
             <div class="cert-item-title">Introduction to Modern AI</div>
             <div class="cert-item-issuer">Cisco Networking Academy</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">22 Sep 2026</div>
             <span class="cert-item-id">ID: 17517023-752b-40c6</span>
           </div>
         </div>
 
-        <div class="cert-item" style="margin-top: 6px;">
+        <div class="cert-item">
           <div>
             <div class="cert-item-title">Introduction to AI Literacy and Responsible Use</div>
             <div class="cert-item-issuer">Map&uacute;a University &times; CHED / ACHIEVE</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">14 Sep 2026</div>
             <span class="cert-item-id">ID: Y4R3RMLDG6N8B</span>
           </div>
         </div>
 
-        <div class="cert-item" style="margin-top: 6px;">
+        <div class="cert-item">
           <div>
             <div class="cert-item-title">Computer Hardware Basics</div>
             <div class="cert-item-issuer">Cisco Networking Academy &times; DICT-ITU DTC</div>
           </div>
-          <div style="text-align: right;">
+          <div class="cert-item-meta">
             <div class="entry-date">14 Sep 2026</div>
             <span class="cert-item-id">ID: 5ea20721-a0db-41a4</span>
           </div>
@@ -529,10 +599,11 @@
       <section class="resume-section">
         <h2 class="section-heading">Trainings, Seminars, &amp; Workshops</h2>
         <ul class="clean-list">
-          <li><strong>Building Your IT Career: Opportunities in Cloud Computing and Microsoft Credentials</strong> &mdash; Guest Speaker: Ms. Mizel Narag (Cloud infrastructure, Microsoft Azure &amp; M365 roadmap)</li>
-          <li><strong>Building and Shipping Software with AI</strong> &mdash; AI Dev PH Course &amp; Community Workshop (Instructor: Mar Wie Ang)</li>
-          <li><strong>AI Literacy &amp; Responsible Use Micro-Credential</strong> &mdash; Map&uacute;a University asCEnd Learning</li>
-          <li><strong>Foundational Computer Hardware &amp; Modern AI Sessions</strong> &mdash; Cisco Networking Academy &amp; DICT-ITU DTC</li>
+          <li><strong>Building Your IT Career: Opportunities in Cloud Computing and Microsoft Credentials</strong> &mdash; J.H. Cerilles State College, School of Computing Studies (Guest Speaker: Mizel Dane G. Narag, 13 Oct 2026)</li>
+          <li><strong>Soft Skills Seminar</strong> &mdash; J.H. Cerilles State College, School of Computing Studies, JHCSC Library AVR (25 Sep 2026)</li>
+          <li><strong>Building and Shipping Software with AI</strong> &mdash; AI Dev PH Course &amp; Community Workshop (Instructor: Mar Wie Ang, 19 Oct 2026)</li>
+          <li><strong>AI Literacy &amp; Responsible Use Micro-Credential</strong> &mdash; Map&uacute;a University asCEnd Learning (14 Sep 2026)</li>
+          <li><strong>Foundational Computer Hardware &amp; Modern AI Sessions</strong> &mdash; Cisco Networking Academy &amp; DICT-ITU DTC (Sep&ndash;Oct 2026)</li>
         </ul>
       </section>
 
