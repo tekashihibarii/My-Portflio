@@ -30,12 +30,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet">
 
     <!-- Apply saved theme before first paint (CSP-safe external script) -->
-    <script src="theme-init.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="theme-init.js?v=20261122-3"></script>
+    <link rel="stylesheet" href="style.css?v=20261122-3">
 </head>
 
 <body>
@@ -48,10 +48,6 @@
     <div class="scroll-progress-container" aria-hidden="true">
         <div class="scroll-progress-bar" id="scrollProgress"></div>
     </div>
-
-    <!-- Custom Cursor (activated on fine-pointer desktop after first mousemove) -->
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-outline" aria-hidden="true"></div>
 
     <nav class="navbar" aria-label="Primary navigation">
         <a href="#intro" class="logo" aria-label="Adrian Paul Lagura Home">ADRIAN<span class="accent">.</span></a>
@@ -166,7 +162,7 @@
         </section>
 
         <!-- ABOUT SECTION -->
-        <section id="about" class="about-section fade-in">
+        <section id="about" class="about-section">
             <div class="section-header">
                 <span class="section-num">01</span>
                 <span class="dash">-</span>
@@ -229,7 +225,7 @@
         </section>
 
         <!-- WORK SECTION -->
-        <section id="work" class="work-section fade-in">
+        <section id="work" class="work-section">
             <div class="section-header">
                 <span class="section-num">02</span>
                 <span class="dash">-</span>
@@ -408,7 +404,7 @@
         </section>
 
         <!-- SKILLS SECTION -->
-        <section id="skills" class="skills-section fade-in">
+        <section id="skills" class="skills-section">
             <div class="section-header">
                 <span class="section-num">03</span>
                 <span class="dash">-</span>
@@ -490,7 +486,7 @@
         </section>
 
         <!-- CERTIFICATES SECTION -->
-        <section id="certificates" class="certificates-section fade-in">
+        <section id="certificates" class="certificates-section">
             <div class="section-header">
                 <span class="section-num">04</span>
                 <span class="dash">-</span>
@@ -524,9 +520,9 @@
                     data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Core Generative AI Skills certificate">
-                        <img src="assets/certificates/cert-core-generative-ai.webp"
+                        <img src="assets/certificates/thumbs/cert-core-generative-ai.webp"
                             alt="Core Generative AI Skills Certificate" class="cert-img" loading="lazy" decoding="async"
-                            width="1000" height="678">
+                            fetchpriority="low" width="520" height="353">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -575,8 +571,8 @@
                     data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview AI Power User Launchpad certificate">
-                        <img src="assets/certificates/cert-ai-power-user.webp" alt="AI Power User Launchpad Certificate"
-                            class="cert-img" loading="lazy" decoding="async" width="1000" height="678">
+                        <img src="assets/certificates/thumbs/cert-ai-power-user.webp" alt="AI Power User Launchpad Certificate"
+                            class="cert-img" loading="lazy" decoding="async" fetchpriority="low" width="520" height="353">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -626,9 +622,9 @@
                     data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Optimizing Generative AI certificate">
-                        <img src="assets/certificates/cert-optimizing-generative-ai.webp"
+                        <img src="assets/certificates/thumbs/cert-optimizing-generative-ai.webp"
                             alt="Optimizing Generative AI Certificate" class="cert-img" loading="lazy" decoding="async"
-                            width="1000" height="678">
+                            fetchpriority="low" width="520" height="353">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -677,9 +673,9 @@
                     data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Find Insights with AI certificate">
-                        <img src="assets/certificates/cert-find-insights-ai.webp"
+                        <img src="assets/certificates/thumbs/cert-find-insights-ai.webp"
                             alt="Find Insights with AI Certificate" class="cert-img" loading="lazy" decoding="async"
-                            width="1000" height="678">
+                            fetchpriority="low" width="520" height="353">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -729,9 +725,9 @@
                     data-issuer="DICT-ITU DTC Initiative through Cisco Networking Academy" data-date="31 Oct 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Engaging Stakeholders for Success certificate">
-                        <img src="assets/certificates/cert-engaging-stakeholders.webp"
+                        <img src="assets/certificates/thumbs/cert-engaging-stakeholders.webp"
                             alt="Engaging Stakeholders for Success Certificate" class="cert-img" loading="lazy"
-                            decoding="async" width="1000" height="678">
+                            decoding="async" fetchpriority="low" width="520" height="353">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -782,9 +778,9 @@
                     data-issuer="AI Dev PH Discord Community (Mar Wie Ang)" data-date="19 Oct 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Fundamentals of AI-Driven Development certificate">
-                        <img src="assets/certificates/cert-ai-driven-dev.webp"
+                        <img src="assets/certificates/thumbs/cert-ai-driven-dev.webp"
                             alt="Fundamentals of AI-Driven Development Certificate" class="cert-img" loading="lazy"
-                            decoding="async" width="1000" height="697">
+                            decoding="async" fetchpriority="low" width="520" height="362">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -835,9 +831,9 @@
                     data-date="13 Oct 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Building Your IT Career: Cloud Computing certificate">
-                        <img src="assets/certificates/cert-cloud-computing.webp"
+                        <img src="assets/certificates/thumbs/cert-cloud-computing.webp"
                             alt="Building Your IT Career Cloud Computing Certificate" class="cert-img" loading="lazy"
-                            decoding="async" width="1000" height="698">
+                            decoding="async" fetchpriority="low" width="520" height="363">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -886,9 +882,9 @@
                     data-pdf="assets/certificates/cert-soft-skills-seminar.pdf" data-title="Soft Skills Seminar"
                     data-issuer="J.H. Cerilles State College — School of Computing Studies" data-date="25 Sep 2026">
                     <button type="button" class="cert-img-wrapper" aria-label="Preview Soft Skills Seminar certificate">
-                        <img src="assets/certificates/cert-soft-skills-seminar.webp"
+                        <img src="assets/certificates/thumbs/cert-soft-skills-seminar.webp"
                             alt="Soft Skills Seminar Certificate" class="cert-img" loading="lazy" decoding="async"
-                            width="1250" height="937">
+                            fetchpriority="low" width="520" height="390">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -936,8 +932,8 @@
                     data-issuer="Cisco Networking Academy" data-date="22 Sep 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Introduction to Modern AI certificate">
-                        <img src="assets/certificates/cert-modern-ai.webp" alt="Introduction to Modern AI Certificate"
-                            class="cert-img" loading="lazy" decoding="async" width="1000" height="677">
+                        <img src="assets/certificates/thumbs/cert-modern-ai.webp" alt="Introduction to Modern AI Certificate"
+                            class="cert-img" loading="lazy" decoding="async" fetchpriority="low" width="520" height="352">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -987,9 +983,9 @@
                     data-issuer="Map&uacute;a University &times; CHED / ACHIEVE" data-date="14 Sep 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Introduction to AI Literacy and Responsible Use certificate">
-                        <img src="assets/certificates/cert-ai-literacy.webp"
+                        <img src="assets/certificates/thumbs/cert-ai-literacy.webp"
                             alt="Introduction to AI Literacy and Responsible Use Certificate" class="cert-img"
-                            loading="lazy" decoding="async" width="1000" height="708">
+                            loading="lazy" decoding="async" fetchpriority="low" width="520" height="368">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1038,9 +1034,9 @@
                     data-issuer="Cisco Networking Academy &times; DICT-ITU DTC" data-date="14 Sep 2026">
                     <button type="button" class="cert-img-wrapper"
                         aria-label="Preview Computer Hardware Basics certificate">
-                        <img src="assets/certificates/cert-hardware-basics.webp"
+                        <img src="assets/certificates/thumbs/cert-hardware-basics.webp"
                             alt="Computer Hardware Basics Certificate" class="cert-img" loading="lazy" decoding="async"
-                            width="1000" height="677">
+                            fetchpriority="low" width="520" height="352">
                         <span class="cert-overlay" aria-hidden="true">
                             <span class="view-btn-text">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1085,7 +1081,7 @@
         </section>
 
         <!-- CONTACT SECTION -->
-        <section id="contact" class="contact-section fade-in">
+        <section id="contact" class="contact-section">
             <div class="section-header">
                 <span class="section-num">05</span>
                 <span class="dash">-</span>
@@ -1191,7 +1187,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20261122-3"></script>
 </body>
 
 </html>

@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let navScrolled = false;
     let currentActiveId = '';
     let scrollTicking = false;
-    let portraitRect = null;
 
     function recalcMetrics() {
         maxScroll = Math.max(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
@@ -80,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateOnScroll() {
         scrollTicking = false;
-        portraitRect = null;
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
         if (scrollProgress) {
@@ -148,133 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     recalcMetrics();
     updateOnScroll();
 
-    // 3. Refresh-Rate-Independent GPU Custom Cursor (Fine Pointer, No Reduced Motion)
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (finePointer && !reducedMotion && cursorDot && cursorOutline) {
-        let mouseX = -100;
-        let mouseY = -100;
-        let outlineX = -100;
-        let outlineY = -100;
-        let currentScale = 1;
-        let targetScale = 1;
-        let cursorActive = false;
-        let rafId = null;
-        let lastTime = 0;
-
-        const interactiveSelector =
-            'a, button, input, textarea, .intro-image-container, .project-card, .certificate-card, .cert-img-wrapper';
-
-        function startCursorLoop() {
-            if (!rafId) {
-                lastTime = 0;
-                rafId = requestAnimationFrame(renderCursor);
-            }
-        }
-
-        function renderCursor(now) {
-            const dt = lastTime ? Math.min(0.05, Math.max(0.001, (now - lastTime) / 1000)) : 1 / 60;
-            lastTime = now;
-            const factor = 1 - Math.exp(-22 * dt);
-
-            const dx = mouseX - outlineX;
-            const dy = mouseY - outlineY;
-            const ds = targetScale - currentScale;
-
-            if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2 && Math.abs(ds) < 0.005) {
-                outlineX = mouseX;
-                outlineY = mouseY;
-                currentScale = targetScale;
-                rafId = null;
-                lastTime = 0;
-            } else {
-                outlineX += dx * factor;
-                outlineY += dy * factor;
-                currentScale += ds * factor;
-                rafId = requestAnimationFrame(renderCursor);
-            }
-
-            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%) scale(${currentScale.toFixed(3)})`;
-        }
-
-        window.addEventListener(
-            'mousemove',
-            (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                if (!cursorActive) {
-                    cursorActive = true;
-                    outlineX = mouseX;
-                    outlineY = mouseY;
-                    root.classList.add('has-custom-cursor');
-                    cursorDot.classList.add('cursor-visible');
-                    cursorOutline.classList.add('cursor-visible');
-                }
-                startCursorLoop();
-            },
-            { passive: true }
-        );
-
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                targetScale = 1.45;
-                cursorOutline.classList.add('cursor-hover');
-                if (cursorActive) startCursorLoop();
-            }
-        });
-
-        document.addEventListener('mouseout', (e) => {
-            const leftTarget = e.target.closest(interactiveSelector);
-            const enteredTarget = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest(interactiveSelector) : null;
-            if (leftTarget && leftTarget !== enteredTarget) {
-                targetScale = 1;
-                cursorOutline.classList.remove('cursor-hover');
-                if (cursorActive) startCursorLoop();
-            }
-        });
-
-        document.addEventListener('mouseleave', () => {
-            cursorDot.classList.remove('cursor-visible');
-            cursorOutline.classList.remove('cursor-visible');
-            if (rafId) {
-                cancelAnimationFrame(rafId);
-                rafId = null;
-                lastTime = 0;
-            }
-        });
-
-        document.addEventListener('mouseenter', () => {
-            if (cursorActive) {
-                cursorDot.classList.add('cursor-visible');
-                cursorOutline.classList.add('cursor-visible');
-            }
-        });
-    }
-
-    // 4. Intersection Observer for Fade-In Animations
-    const fadeElements = document.querySelectorAll('.fade-in');
-    if ('IntersectionObserver' in window && !reducedMotion) {
-        const observer = new IntersectionObserver(
-            (entries, obs) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            },
-            { root: null, rootMargin: '0px', threshold: 0.08 }
-        );
-        fadeElements.forEach((el) => observer.observe(el));
-    } else {
-        fadeElements.forEach((el) => el.classList.add('visible'));
-    }
-
-    // 5. Mobile Sidebar Toggle & Escape Support
+    // 3. Mobile Sidebar Toggle & Escape Support
     const hamburger = document.querySelector('.hamburger');
     const sidebar = document.querySelector('.sidebar');
     const closeBtn = document.querySelector('.close-btn');
@@ -306,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => setSidebarState(false, false));
     });
 
-    // 6. Certificate Category Filtering
+    // 4. Certificate Category Filtering
     const certCards = Array.from(document.querySelectorAll('.certificate-card'));
     const filterBtns = document.querySelectorAll('.cert-filter-btn');
     const certCount = document.getElementById('certCount');
@@ -343,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 7. Certificate Lightbox Modal (Prev/Next + PDF Download + Focus Trap)
+    // 5. Certificate Lightbox Modal (Prev/Next + PDF Download + Focus Trap)
     const certModal = document.getElementById('certModal');
     const certModalClose = document.getElementById('certModalClose');
     const certModalBackdrop = document.querySelector('.cert-modal-backdrop');
@@ -483,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 8. Copy-to-Clipboard Helper & Contact Form Handler
+    // 6. Copy-to-Clipboard Helper & Contact Form Handler
     function copyText(text) {
         if (navigator.clipboard && window.isSecureContext) {
             return navigator.clipboard.writeText(text);
@@ -576,48 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9. rAF-Throttled Subtle Portrait Tilt with Cached Rect (Fine Pointer Only)
-    if (finePointer && !reducedMotion && portraitToggle) {
-        let tiltRaf = null;
-        let tiltX = 0;
-        let tiltY = 0;
-
-        portraitToggle.addEventListener('mouseenter', () => {
-            portraitRect = portraitToggle.getBoundingClientRect();
-        });
-
-        portraitToggle.addEventListener(
-            'mousemove',
-            (e) => {
-                if (!portraitRect) portraitRect = portraitToggle.getBoundingClientRect();
-                if (!portraitRect.width || !portraitRect.height) return;
-                const nx = (e.clientX - portraitRect.left) / portraitRect.width - 0.5;
-                const ny = (e.clientY - portraitRect.top) / portraitRect.height - 0.5;
-                tiltY = nx * 5;
-                tiltX = -ny * 5;
-                if (!tiltRaf) {
-                    tiltRaf = requestAnimationFrame(() => {
-                        tiltRaf = null;
-                        portraitToggle.style.setProperty('--tilt-y', `${tiltY.toFixed(2)}deg`);
-                        portraitToggle.style.setProperty('--tilt-x', `${tiltX.toFixed(2)}deg`);
-                    });
-                }
-            },
-            { passive: true }
-        );
-
-        portraitToggle.addEventListener('mouseleave', () => {
-            portraitRect = null;
-            if (tiltRaf) {
-                cancelAnimationFrame(tiltRaf);
-                tiltRaf = null;
-            }
-            portraitToggle.style.setProperty('--tilt-x', '0deg');
-            portraitToggle.style.setProperty('--tilt-y', '0deg');
-        });
-    }
-
-    // 10. Copyable Credential IDs
+    // 7. Copyable Credential IDs
     document.querySelectorAll('.cred-copy-btn').forEach((btn) => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
