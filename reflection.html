@@ -125,6 +125,13 @@
       padding: 4px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.12);
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .doc-tabs::-webkit-scrollbar {
+      display: none;
     }
 
     .tab-btn {
@@ -136,12 +143,13 @@
       font-family: 'Inter', Arial, sans-serif;
       font-size: 12px;
       font-weight: 600;
-      padding: 7px 14px;
+      padding: 7px 12px;
       border-radius: 6px;
       border: none;
       cursor: pointer;
       transition: background-color 0.2s ease, color 0.2s ease;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .tab-btn:hover {
@@ -322,7 +330,7 @@
       }
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 1220px) {
       .toolbar {
         justify-content: center;
         padding: 10px 1rem;
@@ -338,7 +346,9 @@
       .page-shadow {
         padding-top: 138px;
       }
+    }
 
+    @media (max-width: 960px) {
       .page {
         width: 100%;
         margin: 10px 0;
@@ -400,6 +410,18 @@
           <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
         </svg>
         Cloud Computing &amp; Microsoft Credentials
+      </button>
+
+      <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="doc-soft-skills"
+        id="tab-soft-skills" onclick="switchDoc('doc-soft-skills')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        Why Soft Skills Matter
       </button>
     </nav>
 
@@ -533,6 +555,33 @@
         <p class="no-indent">Microsoft certification under my belt, strong communication skills, and the confidence to prove that I am ready to keep learning from day one.</p>
       </div>
     </article>
+
+    <!-- REFLECTION 4: Why Soft Skills Matter for an IT Practitioner -->
+    <article class="reflection-doc" role="tabpanel" aria-labelledby="tab-soft-skills" id="doc-soft-skills"
+      data-title="Why Soft Skills Matter for an IT Practitioner - Reflection"
+      data-filename="Reflection_Why_Soft_Skills_Matter_for_an_IT_Practitioner.pdf">
+      <!-- Page 1 of 2 -->
+      <div class="page" id="doc-soft-skills-page1">
+        <h1 class="paper-title no-indent">Why Soft Skills Matter for an IT Practitioner</h1>
+
+        <p>On September 25, 2026, I attended the Soft Skills Seminar at the JHCSC Library AVR, and it changed how I think about my future career. In our BSIT classes, we spend most of our time on programming, databases, and networking, so it is easy to believe that being good with technology is all that employers want. This seminar showed me that technical skills only get you in the door. An IT person works with real people every day, such as co-workers, clients, and users who are frustrated because their system stopped working. If you can write excellent code but cannot communicate, work with others, or handle pressure, you will struggle to be effective, no matter how talented you are.</p>
+
+        <p>Looking at my own soft skills, I think my strongest quality is adaptability. When a project requirement changes in the middle of development, or when I have to work with a tool I have never used before, I try to stay calm and figure it out instead of complaining. Resilience goes together with that, because setbacks like a failed program or a bad grade are part of learning, and I try to treat them as feedback. On the other hand, the area where I have the most room to grow is time management. It is tempting to leave tasks until the last minute and rely on a rush of effort before the deadline. In a real workplace, that habit would affect other people, so I want to start using task lists and personal deadlines, and finish my work earlier than required.</p>
+
+        <p>Communication was one of the main points of the seminar, and I think it is especially important in IT. Many users do not understand technical terms, and they should not have to. Instead of saying, &ldquo;Your computer is slow because you have too many programs running,&rdquo; a good communicator can say, &ldquo;I noticed several programs are using a lot of memory at once. Let me close the ones you don&rsquo;t need and show you how to check this next time.&rdquo; The first response makes the user feel blamed, while the second helps them and builds trust. Listening matters just as much as speaking, because I cannot solve a problem I have not fully understood. That means asking questions, confirming the details, and not assuming I already know the answer.</p>
+
+        <p>Teamwork is another skill I will need as an IT practitioner, since most systems are built by groups rather than by one person. In group projects, there will always be differences in work styles, opinions, and skill levels. A professional response is to discuss problems respectfully instead of complaining behind someone&rsquo;s back. For example, if a teammate has not finished their part, I would approach them privately and say, &ldquo;Hey, is there anything I can help with so we can finish on time?&rdquo; Handling it this way protects the relationship and keeps</p>
+      </div>
+
+      <!-- Page 2 of 2 -->
+      <div class="page" id="doc-soft-skills-page2">
+        <p class="no-indent">the team focused on the goal instead of on blame.</p>
+
+        <p>Professionalism is also shown in daily habits, both in school and in the workplace. It means arriving on time, dressing and speaking appropriately, respecting the people I work with, and taking responsibility for my tasks. It also means accepting feedback without getting defensive. When a supervisor or instructor points out a mistake, they are helping me improve, and I should thank them and apply the correction. These habits seem small, but they shape how others see me and whether they trust me with greater responsibility.</p>
+
+        <p>As a future IT professional, I commit myself to improving my time management, communicating clearly and respectfully with the people I serve, and working as a dependable member of any team I join. By practicing these skills in my studies and group projects now, I hope to be ready not only with the technical ability but also with the character that employers value, so that I can become a reliable and well-rounded practitioner by the time I graduate.</p>
+      </div>
+    </article>
   </main>
 
   <script>
@@ -574,6 +623,11 @@
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
         history.replaceState(null, null, '#cloud-credentials');
+      } else if (docId === 'doc-soft-skills') {
+        const tab = document.getElementById('tab-soft-skills');
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        history.replaceState(null, null, '#soft-skills');
       }
 
       // Scroll smoothly to top of paper
@@ -618,7 +672,9 @@
     // Hash or URL parameter checking on initial load
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash.includes('cloud') || hash.includes('microsoft') || hash.includes('azure')) {
+      if (hash.includes('soft') || hash.includes('skills')) {
+        switchDoc('doc-soft-skills');
+      } else if (hash.includes('cloud') || hash.includes('microsoft') || hash.includes('azure')) {
         switchDoc('doc-cloud');
       } else if (hash.includes('professional') || hash.includes('practitioner')) {
         switchDoc('doc-professional');
